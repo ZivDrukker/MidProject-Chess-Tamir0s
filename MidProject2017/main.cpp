@@ -1,5 +1,4 @@
 //Tam!r0s & Z!v0s @ Chess-MidProject
-//abc
 #include "Pipe.h"
 #include <iostream>
 #include <thread>
