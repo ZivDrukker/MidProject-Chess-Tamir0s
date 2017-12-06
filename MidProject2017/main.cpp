@@ -1,4 +1,5 @@
 //Tam!r0s & Z!v0s @ Chess-MidProject
+//checkascascl
 #include "Pipe.h"
 #include <iostream>
 #include <thread>
