@@ -6,6 +6,22 @@
 #include "Soldier.h"
 
 #define SIZE 8
+#define A_ASCII 97
+#define ONE_ASCII 49
+
+#define NULL_PIECE '#'
+#define KING_BLACK 'k'
+#define QUEEN_BLACK 'q'
+#define BISHOP_BLACK 'b'
+#define ROOK_BLACK 'r'
+#define KNIGHT_BLACK 'n'
+#define PAWN_BLACK 'p'
+#define KING_WHITE 'K'
+#define QUEEN_WHITE 'Q'
+#define BISHOP_WHITE 'B'
+#define ROOK_WHITE 'R'
+#define KNIGHT_WHITE 'N'
+#define PAWN_WHITE 'P'
 
 using std::string;
 using std::cout;
@@ -19,17 +35,11 @@ private:
 	void setBoard(string str);
 
 public:
-	Soldier* _board[SIZE][SIZE];
+	Soldier*** _gameBoard;
 
 	Board(string str);
 	~Board();
 	Soldier* getCell(string cell);
-	void setCell(Soldier*);
-	Soldier* operator=(Soldier*);
-	Soldier* operator[](int x);
-<<<<<<< HEAD
-	//hey there
-	//hey there 2
-=======
->>>>>>> parent of 4acffde... Added Board object with ERRORS.
+	void setCell(Soldier* piece, string cell);
+	Soldier* operator()(int x, int y);
 };
