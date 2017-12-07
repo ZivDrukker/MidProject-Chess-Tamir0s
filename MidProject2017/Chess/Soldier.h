@@ -6,11 +6,11 @@
 #include "Board.h"
 
 using std::string;
-using std::cout;
-using std::cin;
+//using std::cout;
+//using std::cin;
 
 
-class Soldier 
+class Soldier
 {
 
 protected:
