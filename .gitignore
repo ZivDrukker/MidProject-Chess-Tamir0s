@@ -154,6 +154,10 @@ publish/
 *.nuget.props
 *.nuget.targets
 
+Browse.VC.db
+Solution.VC.db
+.suo
+
 # Microsoft Azure Build Output
 csx/
 *.build.csdef
