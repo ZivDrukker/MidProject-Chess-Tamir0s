@@ -27,6 +27,9 @@ public:
 	void setCell(Soldier*);
 	Soldier* operator=(Soldier*);
 	Soldier* operator[](int x);
+<<<<<<< HEAD
 	//hey there
 	//hey there 2
+=======
+>>>>>>> parent of 4acffde... Added Board object with ERRORS.
 };
