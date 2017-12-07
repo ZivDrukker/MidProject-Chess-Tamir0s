@@ -27,4 +27,5 @@ public:
 	void setCell(Soldier*);
 	Soldier* operator=(Soldier*);
 	Soldier* operator[](int x);
+	//hey there
 };
