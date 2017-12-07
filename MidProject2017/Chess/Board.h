@@ -28,4 +28,5 @@ public:
 	Soldier* operator=(Soldier*);
 	Soldier* operator[](int x);
 	//hey there
+	//hey there 2
 };
