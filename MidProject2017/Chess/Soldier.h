@@ -9,10 +9,10 @@ using std::string;
 using std::cout;
 using std::cin;
 
+class Board;
 
 class Soldier 
 {
-
 protected:
 	string _type;
 	int _color;
