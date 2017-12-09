@@ -42,4 +42,5 @@ public:
 	Soldier* getCell(string cell);
 	void setCell(Soldier* piece, string cell);
 	Soldier* operator()(int x, int y);
+	string getXandY(Soldier* piece);
 };

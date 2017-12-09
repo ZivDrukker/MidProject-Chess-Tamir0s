@@ -110,3 +110,23 @@ void Board::setBoard(string str)
 		}
 	}
 }
+
+
+string Board::getXandY(Soldier* piece)
+{
+	bool found = false;
+	string place = "";
+	for (int i = 0; i < SIZE && !found; i++)
+	{
+		for (int j = 0; j < SIZE && !found; j++)
+		{
+			if (piece == _gameBoard[i][j])
+			{
+				place += (i + A_ASCII);
+				place += (j + ONE_ASCII);
+				found = true;
+			}
+		}
+	}
+	return place;
+}
