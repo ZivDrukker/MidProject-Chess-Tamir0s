@@ -41,6 +41,12 @@ string Rook::move(string instruction)
 	return toReturn;
 }
 
+
+/*
+Input: instruction to move the piece
+Output: NONE
+function for checking if there is chess
+*/
 bool Rook::checkChess(string instruction)
 {
 	string xAndy = "";
