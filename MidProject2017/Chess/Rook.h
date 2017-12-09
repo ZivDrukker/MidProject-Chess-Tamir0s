@@ -5,7 +5,7 @@
 
 class Rook : Soldier
 {
-	Rook(int color);
+	Rook(int color, Board* board);
 	~Rook() = default;
 	string move(string instruction);
 };

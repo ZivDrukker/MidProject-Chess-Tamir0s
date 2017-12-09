@@ -5,7 +5,7 @@
 
 class King : Soldier
 {
-	King(int color);
+	King(int color, Board* board);
 	~King() = default;
 	string move(string instruction);
 };
