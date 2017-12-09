@@ -9,7 +9,7 @@
 #define A_ASCII 97
 #define ONE_ASCII 49
 
-#define NULL_PIECE '#'
+#define EMPTY_PIECE '#'
 #define KING_BLACK 'k'
 #define QUEEN_BLACK 'q'
 #define BISHOP_BLACK 'b'
@@ -28,6 +28,8 @@ using std::cout;
 using std::cin;
 
 class Soldier;
+class Rook;
+class King;
 
 class Board
 {

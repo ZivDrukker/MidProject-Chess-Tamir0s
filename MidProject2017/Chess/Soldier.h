@@ -11,7 +11,7 @@ using std::cin;
 
 class Board;
 
-class Soldier 
+class Soldier
 {
 protected:
 	string _type;

@@ -3,7 +3,7 @@
 
 #include "Soldier.h"
 
-class King : Soldier
+class King : public Soldier
 {
 private:
 	bool checkChess(string instruction);
@@ -11,5 +11,5 @@ private:
 public:
 	King(int color, Board* board);
 	~King() = default;
-	string move(string instruction);
+	virtual string move(string instruction);
 };

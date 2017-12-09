@@ -12,7 +12,7 @@ Board::Board(string str)
 {
 	int i = 0;
 	_gameBoard = new Soldier**[SIZE];
-
+	
 	for (i = 0; i < SIZE; i++)
 	{
 		_gameBoard[i] = new Soldier*[SIZE];
@@ -53,7 +53,7 @@ function to get the soldier in a specific place by a given string
 */
 Soldier* Board::getCell(string cell)
 {
-	int row = ((int)cell[0] - A_ASCII), col = ((int)cell[1] - ONE_ASCII);
+	int row = ((int)cell[0] - A_ASCII), col = abs(-SIZE + ((int)cell[1] - ONE_ASCII + 1));
 
 	return _gameBoard[row][col];
 }
@@ -88,8 +88,8 @@ Soldier* Board::operator()(int x, int y)
 
 
 /*
-Input:
-Output:
+Input: string to set to the board
+Output: NONE
 function to set the board
 */
 void Board::setBoard(string str)
@@ -103,7 +103,25 @@ void Board::setBoard(string str)
 			switch (str[i * j])
 			{
 			case KING_BLACK:
-				//TODO: add all classes and fill out switch case
+				_gameBoard[i][j] = new King(0, this);
+				break;
+
+			case KING_WHITE:
+				_gameBoard[i][j] = new King(1, this);
+				break;
+
+			case ROOK_BLACK:
+				_gameBoard[i][j] = new Rook(0, this);
+				break;
+
+			case ROOK_WHITE:
+				_gameBoard[i][j] = new Rook(1, this);
+				break;
+
+			case EMPTY_PIECE:
+				_gameBoard[i][j] = NULL;
+				break;
+
 			default:
 				break;
 			}
@@ -112,6 +130,11 @@ void Board::setBoard(string str)
 }
 
 
+/*
+Input: Soldier piece
+Output: string of where it is in x and y (int)
+function for getting x and y of piece
+*/
 string Board::getXandY(Soldier* piece)
 {
 	bool found = false;

@@ -1,2 +1,16 @@
-﻿  Board.cpp
-  Chess.vcxproj -> C:\Users\magshimim\Desktop\Magshimim\magshimim second year\programming\Chess\MidProject-Chess-Tamir0s\MidProject2017\Debug\Chess.exe
+﻿  Soldier.cpp
+  King.cpp
+  Board.cpp
+c:\users\magshimim\desktop\magshimim\magshimim second year\programming\chess\midproject-chess-tamir0s\midproject2017\chess\board.cpp(106): error C2027: use of undefined type 'King'
+  c:\users\magshimim\desktop\magshimim\magshimim second year\programming\chess\midproject-chess-tamir0s\midproject2017\chess\board.h(32): note: see declaration of 'King'
+c:\users\magshimim\desktop\magshimim\magshimim second year\programming\chess\midproject-chess-tamir0s\midproject2017\chess\board.cpp(110): error C2027: use of undefined type 'King'
+  c:\users\magshimim\desktop\magshimim\magshimim second year\programming\chess\midproject-chess-tamir0s\midproject2017\chess\board.h(32): note: see declaration of 'King'
+c:\users\magshimim\desktop\magshimim\magshimim second year\programming\chess\midproject-chess-tamir0s\midproject2017\chess\board.cpp(114): error C2027: use of undefined type 'Rook'
+  c:\users\magshimim\desktop\magshimim\magshimim second year\programming\chess\midproject-chess-tamir0s\midproject2017\chess\board.h(31): note: see declaration of 'Rook'
+c:\users\magshimim\desktop\magshimim\magshimim second year\programming\chess\midproject-chess-tamir0s\midproject2017\chess\board.cpp(118): error C2027: use of undefined type 'Rook'
+  c:\users\magshimim\desktop\magshimim\magshimim second year\programming\chess\midproject-chess-tamir0s\midproject2017\chess\board.h(31): note: see declaration of 'Rook'
+  Generating Code...
+  Compiling...
+  main.cpp
+  Rook.cpp
+  Generating Code...
