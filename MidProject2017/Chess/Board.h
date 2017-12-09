@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include "Soldier.h"
+//#include "Rook.h"
+//#include "King.h"
 
 #define SIZE 8
 #define A_ASCII 97

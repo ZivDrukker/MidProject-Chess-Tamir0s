@@ -3,7 +3,6 @@
 
 #include "Soldier.h"
 
-
 class Rook : public Soldier
 {
 private:
