@@ -39,10 +39,10 @@ void main()
 	char msgToGraphics[1024];
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
-
-	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
+	//rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1
+	strcpy_s(msgToGraphics, "rkrkrkrkrkrkrkrk################################RKRKRKRKRKRKRKRK1"); // just example...
 	
-	Board* board = new Board("rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
+	Board* board = new Board("rkrkrkrkrkrkrkrk################################RKRKRKRKRKRKRKRK1");
 
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 

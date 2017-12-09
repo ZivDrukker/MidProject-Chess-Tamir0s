@@ -1,6 +1,8 @@
 //Tam!r0s & Z!v0s @ Chess-MidProject
 
 #include "Board.h"
+#include "King.h" //need for fixing the errors
+#include "Rook.h"
 
 
 /*
@@ -66,9 +68,9 @@ function to set a soldier to a cell
 */
 void Board::setCell(Soldier* piece, string cell)
 {
-	int row = ((int)cell[0] - A_ASCII - 1), col = ((int)cell[1] - ONE_ASCII - 1);
+	int row = ((int)cell[0] - A_ASCII), col = abs(-SIZE + ((int)cell[1] - ONE_ASCII + 1));
 
-	if (_gameBoard[row][col])
+	if (_gameBoard[row][col] != NULL)
 	{
 		delete _gameBoard[row][col];
 	}
@@ -96,11 +98,11 @@ void Board::setBoard(string str)
 {
 	int i = 0, j = 0;
 
-	for (i = 1; i <= SIZE; i++)
+	for (i = 0; i < SIZE; i++)
 	{
-		for (j = 1; j <= SIZE; j++)
+		for (j = 0; j < SIZE; j++)
 		{
-			switch (str[i * j])
+			switch (str[(i * SIZE) + j])
 			{
 			case KING_BLACK:
 				_gameBoard[i][j] = new King(0, this);

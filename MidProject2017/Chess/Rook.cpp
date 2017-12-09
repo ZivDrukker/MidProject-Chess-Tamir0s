@@ -21,17 +21,17 @@ string Rook::move(string instruction)
 {
 	string toReturn = "";
 	string placeInBoard = _board->getXandY(this);
-	if (instruction[0] == placeInBoard[0] && instruction[1] != placeInBoard[1] || instruction[1] == placeInBoard[1] && instruction[0] != placeInBoard[0])
+	if (instruction[0] == placeInBoard[0] || instruction[1] == placeInBoard[1] && instruction != placeInBoard)
 	{
 		_board->setCell(this, instruction);
-		if (checkChess(instruction))
+		/*if (checkChess(instruction))
 		{
 			toReturn = "1";
 		}
 		else
-		{
-			toReturn = "2";
-		}
+		{*/
+			toReturn = "0";
+		//}
 	}
 	else
 	{

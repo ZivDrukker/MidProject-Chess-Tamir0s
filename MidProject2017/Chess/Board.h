@@ -4,8 +4,7 @@
 #include <string>
 #include <iostream>
 #include "Soldier.h"
-//#include "Rook.h"
-//#include "King.h"
+
 
 #define SIZE 8
 #define A_ASCII 97
@@ -30,8 +29,8 @@ using std::cout;
 using std::cin;
 
 class Soldier;
-class Rook;
-class King;
+//class Rook;
+//class King;
 
 class Board
 {
