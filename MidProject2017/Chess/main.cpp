@@ -2,8 +2,11 @@
 #include "Pipe.h"
 #include <iostream>
 #include <thread>
+#include "Board.h"
+
 
 using namespace std;
+
 void main()
 {
 	srand(time_t(NULL));
@@ -39,6 +42,8 @@ void main()
 
 	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
 	
+	Board* board = new Board("rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
+
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
 	// get message from graphics
@@ -50,7 +55,16 @@ void main()
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 		
 		// YOUR CODE
-		strcpy_s(msgToGraphics, "YOUR CODE"); // msgToGraphics should contain the result of the operation
+		string toGet = "";
+		toGet += msgFromGraphics[0];
+		toGet += msgFromGraphics[1];
+
+		string toMove = "";
+		toMove += msgFromGraphics[2];
+		toMove += msgFromGraphics[3];
+		string strToSend = board->getCell(toGet)->move(toMove);
+
+		strcpy_s(msgToGraphics, strToSend.c_str()); // msgToGraphics should contain the result of the operation
 
 
 

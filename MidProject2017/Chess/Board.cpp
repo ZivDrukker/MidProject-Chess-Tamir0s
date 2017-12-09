@@ -11,7 +11,7 @@ c'tor function for Board object
 Board::Board(string str)
 {
 	int i = 0;
-	*_gameBoard = new Soldier*[SIZE];
+	_gameBoard = new Soldier**[SIZE];
 
 	for (i = 0; i < SIZE; i++)
 	{
@@ -53,7 +53,7 @@ function to get the soldier in a specific place by a given string
 */
 Soldier* Board::getCell(string cell)
 {
-	int row = ((int)cell[0] - A_ASCII - 1), col = ((int)cell[1] - ONE_ASCII - 1);
+	int row = ((int)cell[0] - A_ASCII), col = ((int)cell[1] - ONE_ASCII);
 
 	return _gameBoard[row][col];
 }

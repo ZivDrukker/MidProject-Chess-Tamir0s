@@ -19,21 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="..\stdafx.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="King.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="Soldier.cpp" />
+    <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Pipe.h" />
-    <ClInclude Include="..\stdafx.h" />
-    <ClInclude Include="..\targetver.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="King.h" />
+    <ClInclude Include="Pipe.h" />
     <ClInclude Include="Rook.h" />
     <ClInclude Include="Soldier.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
