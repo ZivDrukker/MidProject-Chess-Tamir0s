@@ -5,6 +5,10 @@
 
 class Rook : Soldier
 {
+private:
+	bool checkChess(string instruction);
+
+public:
 	Rook(int color, Board* board);
 	~Rook() = default;
 	string move(string instruction);
