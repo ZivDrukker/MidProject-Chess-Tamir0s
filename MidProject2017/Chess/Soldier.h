@@ -24,4 +24,6 @@ public:
 	virtual string move(string instructions) = 0;
 	string getType();
 	int getColor();
+	virtual bool checkChess(string instruction) = 0;
+	bool currPlayer(string instruction);
 };

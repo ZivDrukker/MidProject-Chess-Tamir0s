@@ -20,18 +20,27 @@ function for moving the piece
 string Rook::move(string instruction)
 {
 	string toReturn = "";
-	string placeInBoard = _board->getXandY(this);
-	if (instruction[0] == placeInBoard[0] || instruction[1] == placeInBoard[1] && instruction != placeInBoard)
+	if (instruction[0] == instruction[2] || instruction[1] == instruction[3])
 	{
-		_board->setCell(this, instruction);
-		/*if (checkChess(instruction))
+		if (!this->currPlayer(instruction))
 		{
-			toReturn = "1";
+			string toSet = "";
+			toSet += instruction[2];
+			toSet += instruction[3];
+
+			_board->setCell(this, toSet);
+
+			this->checkChess(instruction) ? toReturn = "1" : toReturn = "0";
+
+			toSet = "";
+			toSet += instruction[0];
+			toSet += instruction[1];
+			_board->setCell(nullptr, toSet);
 		}
 		else
-		{*/
-			toReturn = "0";
-		//}
+		{
+			toReturn = "3";
+		}
 	}
 	else
 	{
@@ -43,27 +52,24 @@ string Rook::move(string instruction)
 
 
 /*
-Input: instruction to move the piece
+Input: the place the piece was moved to
 Output: NONE
 function for checking if there is chess
 */
 bool Rook::checkChess(string instruction)
 {
-	string xAndy = "";
-	string xAndyTemp = "";
-	Soldier* temp = NULL;
-	Soldier* current = NULL;
+	Soldier* temp = nullptr;
+	Soldier* current = nullptr;
 	for (int i = 0; i < SIZE; i++)
 	{
-		for (int j = 0; j < SIZE; i++)
+		for (int j = 0; j < SIZE; j++)
 		{
 			current = _board->getCell(instruction);
 			temp = (*this->_board)(i, j);
+
 			if (temp->getType() == string("King") && temp->getColor() != current->getColor())
 			{
-				xAndyTemp = _board->getXandY(temp);
-				xAndy = _board->getXandY(current);
-				if (xAndy[0] == xAndyTemp[0] || xAndy[1] == xAndyTemp[1])
+				if (instruction[0] == instruction[2] || instruction[1] == instruction[3])
 				{
 					return true;
 				}

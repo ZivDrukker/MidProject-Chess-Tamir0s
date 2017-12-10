@@ -8,7 +8,7 @@
 
 #define SIZE 8
 #define A_ASCII 97
-#define ONE_ASCII 49
+#define ZERO_ASCII 48
 
 #define EMPTY_PIECE '#'
 #define KING_BLACK 'k'

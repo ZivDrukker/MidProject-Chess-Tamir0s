@@ -9,6 +9,8 @@ using namespace std;
 
 void main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
 	srand(time_t(NULL));
 
 	
@@ -59,10 +61,7 @@ void main()
 		toGet += msgFromGraphics[0];
 		toGet += msgFromGraphics[1];
 
-		string toMove = "";
-		toMove += msgFromGraphics[2];
-		toMove += msgFromGraphics[3];
-		string strToSend = board->getCell(toGet)->move(toMove);
+		string strToSend = board->getCell(toGet)->move(msgFromGraphics);
 
 		strcpy_s(msgToGraphics, strToSend.c_str()); // msgToGraphics should contain the result of the operation
 
@@ -75,6 +74,8 @@ void main()
 		// get message from graphics
 		msgFromGraphics = p.getMessageFromGraphics();
 	}
+
+	delete board;
 
 	p.close();
 }

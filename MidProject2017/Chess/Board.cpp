@@ -55,7 +55,7 @@ function to get the soldier in a specific place by a given string
 */
 Soldier* Board::getCell(string cell)
 {
-	int row = ((int)cell[0] - A_ASCII), col = abs(-SIZE + ((int)cell[1] - ONE_ASCII + 1));
+	int row = ((int)cell[0] - A_ASCII), col = ((int)cell[1] - ZERO_ASCII - 1);
 
 	return _gameBoard[row][col];
 }
@@ -68,9 +68,9 @@ function to set a soldier to a cell
 */
 void Board::setCell(Soldier* piece, string cell)
 {
-	int row = ((int)cell[0] - A_ASCII), col = abs(-SIZE + ((int)cell[1] - ONE_ASCII + 1));
+	int row = ((int)cell[0] - A_ASCII), col = ((int)cell[1] - ZERO_ASCII - 1);
 
-	if (_gameBoard[row][col] != NULL)
+	if (_gameBoard[row][col] != nullptr)
 	{
 		delete _gameBoard[row][col];
 	}
@@ -102,7 +102,7 @@ void Board::setBoard(string str)
 	{
 		for (j = 0; j < SIZE; j++)
 		{
-			switch (str[(i * SIZE) + j])
+			switch (str[(j * SIZE) + i])
 			{
 			case KING_BLACK:
 				_gameBoard[i][j] = new King(0, this);
@@ -121,7 +121,7 @@ void Board::setBoard(string str)
 				break;
 
 			case EMPTY_PIECE:
-				_gameBoard[i][j] = NULL;
+				_gameBoard[i][j] = nullptr;
 				break;
 
 			default:
@@ -148,7 +148,7 @@ string Board::getXandY(Soldier* piece)
 			if (piece == _gameBoard[i][j])
 			{
 				place += (i + A_ASCII);
-				place += (j + ONE_ASCII);
+				place += (j + ZERO_ASCII);
 				found = true;
 			}
 		}
