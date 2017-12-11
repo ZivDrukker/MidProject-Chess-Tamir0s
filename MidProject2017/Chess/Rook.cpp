@@ -20,7 +20,7 @@ function for moving the piece
 string Rook::move(string instruction)
 {
 	string toReturn = "";
-	if (instruction[0] == instruction[2] || instruction[1] == instruction[3])
+	if (instruction[0] == instruction[2] || instruction[1] == instruction[3] && notBlocked(instruction))
 	{
 		if (!this->currPlayer(instruction))
 		{
@@ -77,4 +77,39 @@ bool Rook::checkChess(string instruction)
 		}
 	}
 	return false;
+}
+
+
+/*
+Input: instruction for the piece movement
+Output: True if the piece is not blocked, else False
+function to check if a piece's movement os blocked by a diffrent player
+*/
+bool Rook::notBlocked(string instruction)
+{
+	bool toReturn = false;
+	int staticColOrRow = 0;
+	int iCol = ((int)instruction[1] - ZERO_ASCII - 1), jCol = ((int)instruction[3] - ZERO_ASCII - 1);
+	int iRow = ((int)instruction[0] - A_ASCII - 1), jRow = ((int)instruction[2] - A_ASCII - 1);
+
+	if (instruction[0] == instruction[2])
+	{
+		staticColOrRow = iRow;
+		
+		for (int i = (int)fmin((float)iCol, (float)jCol); i < (int)fmax((float)iCol, (float)jCol) && !toReturn; i++)//normal min didn't work
+		{
+			(*this->_board)(staticColOrRow, i) ? toReturn = false : toReturn = true;
+		}
+	}
+	else
+	{
+		staticColOrRow = iCol;
+
+		for (int i = (int)fmin((float)iCol, (float)jCol); i < (int)fmax((float)iCol, (float)jCol) && !toReturn; i++)//normal min didn't work
+		{
+			(*this->_board)(i, staticColOrRow) ? toReturn = false : toReturn = true;
+		}
+	}
+
+	return toReturn;
 }

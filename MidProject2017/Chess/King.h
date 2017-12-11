@@ -12,4 +12,5 @@ public:
 	King(int color, Board* board);
 	~King() = default;
 	virtual string move(string instruction);
+	virtual bool notBlocked(string instruction);
 };

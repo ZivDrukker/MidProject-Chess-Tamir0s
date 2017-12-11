@@ -12,4 +12,5 @@ public:
 	Rook(int color, Board* board);
 	~Rook() = default;
 	virtual string move(string instruction);
+	virtual bool notBlocked(string instruction);
 };

@@ -20,7 +20,7 @@ function for moving the piece
 string King::move(string instruction)
 {
 	string toReturn = "";
-	if ((instruction[0] - instruction[2] == 1 || instruction[0] - instruction[2] == -1) || (instruction[3] - instruction[1] == 1 || instruction[3] - instruction[1] == -1))
+	if (abs(instruction[0] - instruction[2] == 1) || abs(instruction[3] - instruction[1] == 1))
 	{
 		if (!this->currPlayer(instruction))
 		{
@@ -57,4 +57,15 @@ function to check the board for a chess
 bool King::checkChess(string instruction)
 {
 	return false;//TODO: build the func
+}
+
+
+/*
+Input: instruction for the piece movement
+Output: True if the piece is not blocked, else False
+function to check if a piece's movement os blocked by a diffrent player
+*/
+bool King::notBlocked(string instruction)
+{
+	return false;
 }

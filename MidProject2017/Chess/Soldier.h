@@ -26,4 +26,5 @@ public:
 	int getColor();
 	virtual bool checkChess(string instruction) = 0;
 	bool currPlayer(string instruction);
+	virtual bool notBlocked(string instruction) = 0;
 };

@@ -98,26 +98,26 @@ void Board::setBoard(string str)
 {
 	int i = 0, j = 0;
 
-	for (i = 0; i < SIZE; i++)
+	for (i = SIZE - 1; i >= 0; i--)
 	{
-		for (j = 0; j < SIZE; j++)
+		for (j = SIZE - 1; j >= 0; j--)
 		{
-			switch (str[(j * SIZE) + i])
+			switch (str[((SIZE - j - 1) * SIZE) + i])
 			{
 			case KING_BLACK:
-				_gameBoard[i][j] = new King(0, this);
-				break;
-
-			case KING_WHITE:
 				_gameBoard[i][j] = new King(1, this);
 				break;
 
+			case KING_WHITE:
+				_gameBoard[i][j] = new King(0, this);
+				break;
+
 			case ROOK_BLACK:
-				_gameBoard[i][j] = new Rook(0, this);
+				_gameBoard[i][j] = new Rook(1, this);
 				break;
 
 			case ROOK_WHITE:
-				_gameBoard[i][j] = new Rook(1, this);
+				_gameBoard[i][j] = new Rook(0, this);
 				break;
 
 			case EMPTY_PIECE:
