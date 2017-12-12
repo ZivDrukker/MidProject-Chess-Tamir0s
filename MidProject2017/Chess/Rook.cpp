@@ -19,8 +19,11 @@ function for moving the piece
 */
 string Rook::move(string instruction)
 {
+	_board->printBoard();
+
+
 	string toReturn = "";
-	if (instruction[0] == instruction[2] || instruction[1] == instruction[3] && notBlocked(instruction))
+	if ((instruction[0] == instruction[2] || instruction[1] == instruction[3]) && notBlocked(instruction)) // && notBlocked(instruction)
 	{
 		if (!this->currPlayer(instruction))
 		{
@@ -28,14 +31,17 @@ string Rook::move(string instruction)
 			toSet += instruction[2];
 			toSet += instruction[3];
 
-			_board->setCell(this, toSet);
-
-			this->checkChess(instruction) ? toReturn = "1" : toReturn = "0";
-
+			Soldier* tempCell = _board->setCell(this, toSet);
+			if (tempCell != nullptr)
+			{
+				delete tempCell;
+			}
 			toSet = "";
 			toSet += instruction[0];
 			toSet += instruction[1];
 			_board->setCell(nullptr, toSet);
+
+			this->checkChess(instruction) ? toReturn = "1" : toReturn = "0";
 		}
 		else
 		{
@@ -66,12 +72,14 @@ bool Rook::checkChess(string instruction)
 		{
 			current = _board->getCell(instruction);
 			temp = (*this->_board)(i, j);
-
-			if (temp->getType() == string("King") && temp->getColor() != current->getColor())
+			if (current && temp)
 			{
-				if (instruction[0] == instruction[2] || instruction[1] == instruction[3])
+				if (temp->getType() == string("King") && temp->getColor() != current->getColor())
 				{
-					return true;
+					if (instruction[0] == instruction[2] || instruction[1] == instruction[3])
+					{
+						return true;
+					}
 				}
 			}
 		}
@@ -87,27 +95,26 @@ function to check if a piece's movement os blocked by a diffrent player
 */
 bool Rook::notBlocked(string instruction)
 {
-	bool toReturn = false;
+	bool toReturn = true;
 	int staticColOrRow = 0;
-	int iCol = ((int)instruction[1] - ZERO_ASCII - 1), jCol = ((int)instruction[3] - ZERO_ASCII - 1);
-	int iRow = ((int)instruction[0] - A_ASCII - 1), jRow = ((int)instruction[2] - A_ASCII - 1);
+	int i = 0;
+	int iCol = ((int)instruction[0] - A_ASCII), iRow = abs((int)instruction[1] - ZERO_ASCII - 1);
+	int jCol = ((int)instruction[2] - A_ASCII), jRow = abs((int)instruction[3] - ZERO_ASCII - 1);
 
 	if (instruction[0] == instruction[2])
 	{
-		staticColOrRow = iRow;
-		
-		for (int i = (int)fmin((float)iCol, (float)jCol); i < (int)fmax((float)iCol, (float)jCol) && !toReturn; i++)//normal min didn't work
+		staticColOrRow = iCol;
+		for (i = min(iRow, jRow) + 1; i < max(iRow, jRow) && toReturn; i++)//normal min didn't work
 		{
-			(*this->_board)(staticColOrRow, i) ? toReturn = false : toReturn = true;
+			(*this->_board)(i, staticColOrRow) ? toReturn = false : toReturn = true;
 		}
 	}
 	else
 	{
-		staticColOrRow = iCol;
-
-		for (int i = (int)fmin((float)iCol, (float)jCol); i < (int)fmax((float)iCol, (float)jCol) && !toReturn; i++)//normal min didn't work
+		staticColOrRow = iRow;
+		for (i = min(iCol, jCol) + 1; i < max(iCol, jCol) && toReturn; i++)//normal min didn't work
 		{
-			(*this->_board)(i, staticColOrRow) ? toReturn = false : toReturn = true;
+			(*this->_board)(staticColOrRow, i) ? toReturn = false : toReturn = true;
 		}
 	}
 

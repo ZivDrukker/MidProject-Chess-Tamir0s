@@ -13,11 +13,12 @@ c'tor function for Board object
 Board::Board(string str)
 {
 	int i = 0;
-	_gameBoard = new Soldier**[SIZE];
+	//_gameBoard = new Soldier**[SIZE];
 	
 	for (i = 0; i < SIZE; i++)
 	{
-		_gameBoard[i] = new Soldier*[SIZE];
+		//_gameBoard[i] = new Soldier*;
+		cout << "a";
 	}
 
 	setBoard(str);
@@ -29,6 +30,7 @@ Input:
 Output:
 d'tor function for Board object
 */
+
 Board::~Board()
 {
 	int i = 0, j = 0;
@@ -37,14 +39,15 @@ Board::~Board()
 	{
 		for (j = 0; j < SIZE; j++)
 		{
-			if (_gameBoard[i][j])
+			if (_gameBoard[i][j] != nullptr)
 			{
 				delete _gameBoard[i][j];
+				_gameBoard[i][j] = nullptr;
 			}
 		}
 	}
 
-	delete _gameBoard;
+	//delete _gameBoard;
 }
 
 
@@ -55,7 +58,7 @@ function to get the soldier in a specific place by a given string
 */
 Soldier* Board::getCell(string cell)
 {
-	int row = ((int)cell[0] - A_ASCII), col = ((int)cell[1] - ZERO_ASCII - 1);
+	int col = ((int)cell[0] - A_ASCII), row = ((int)cell[1] - ZERO_ASCII - 1);
 
 	return _gameBoard[row][col];
 }
@@ -63,18 +66,16 @@ Soldier* Board::getCell(string cell)
 
 /*
 Input: soldier to insert and cell to insert to
-Output: NONE
+Output: the cell you are exchanging
 function to set a soldier to a cell
 */
-void Board::setCell(Soldier* piece, string cell)
+Soldier* Board::setCell(Soldier* piece, string cell)
 {
-	int row = ((int)cell[0] - A_ASCII), col = ((int)cell[1] - ZERO_ASCII - 1);
-
-	if (_gameBoard[row][col] != nullptr)
-	{
-		delete _gameBoard[row][col];
-	}
+	int col = ((int)cell[0] - A_ASCII), row = abs((int)cell[1] - ZERO_ASCII - 1);
+	Soldier* temp = _gameBoard[row][col];
 	_gameBoard[row][col] = piece;
+	return temp;
+	//_gameBoard[(int)instruction[0]][(int)instruction[1]] = _boa;
 }
 
 
@@ -98,11 +99,11 @@ void Board::setBoard(string str)
 {
 	int i = 0, j = 0;
 
-	for (i = SIZE - 1; i >= 0; i--)
+	for (i = 0; i < SIZE; i++)
 	{
-		for (j = SIZE - 1; j >= 0; j--)
+		for (j = 0; j < SIZE; j++)
 		{
-			switch (str[((SIZE - j - 1) * SIZE) + i])
+			switch (str[(i * SIZE) + j])
 			{
 			case KING_BLACK:
 				_gameBoard[i][j] = new King(1, this);
@@ -154,4 +155,28 @@ string Board::getXandY(Soldier* piece)
 		}
 	}
 	return place;
+}
+
+/*
+Input: NONE
+Output: NONE
+function for printing the board
+*/
+void Board::printBoard()
+{
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < SIZE; j++)
+		{
+			if (_gameBoard[i][j])
+			{
+				cout << _gameBoard[i][j]->getType() << _gameBoard[i][j]->getColor() << " ";
+			}
+			else
+			{
+				cout << "# ";
+			}
+		}
+		cout << std::endl;
+	}
 }

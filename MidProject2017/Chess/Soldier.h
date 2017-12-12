@@ -4,7 +4,10 @@
 #include <string>
 #include <iostream>
 #include "Board.h"
+#include <algorithm>
 
+using std::min;
+using std::max;
 using std::string;
 using std::cout;
 using std::cin;

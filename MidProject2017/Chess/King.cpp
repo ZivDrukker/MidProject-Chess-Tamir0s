@@ -20,7 +20,7 @@ function for moving the piece
 string King::move(string instruction)
 {
 	string toReturn = "";
-	if (abs(instruction[0] - instruction[2] == 1) || abs(instruction[3] - instruction[1] == 1))
+	if (abs(instruction[0] - instruction[2]) == 1 || abs(instruction[3] - instruction[1]) == 1)
 	{
 		if (!this->currPlayer(instruction))
 		{
@@ -28,7 +28,11 @@ string King::move(string instruction)
 			toSet += instruction[2];
 			toSet += instruction[3];
 
-			_board->setCell(this, toSet);
+			Soldier* tempCell = _board->setCell(this, toSet);
+			if (tempCell != nullptr)
+			{
+				delete tempCell;
+			}
 			toReturn = "0";
 
 			toSet = "";

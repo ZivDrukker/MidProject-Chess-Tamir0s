@@ -38,12 +38,13 @@ private:
 	void setBoard(string str);
 
 public:
-	Soldier*** _gameBoard;
+	Soldier* _gameBoard[SIZE][SIZE];
 
 	Board(string str);
 	~Board();
 	Soldier* getCell(string cell);
-	void setCell(Soldier* piece, string cell);
+	Soldier* setCell(Soldier* piece, string cell);
 	Soldier* operator()(int x, int y);
 	string getXandY(Soldier* piece);
+	void printBoard();//debugging function
 };
