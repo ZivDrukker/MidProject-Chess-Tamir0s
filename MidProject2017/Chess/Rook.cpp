@@ -23,25 +23,33 @@ string Rook::move(string instruction)
 
 
 	string toReturn = "";
-	if ((instruction[0] == instruction[2] || instruction[1] == instruction[3]) && notBlocked(instruction)) // && notBlocked(instruction)
+	if ((instruction[0] == instruction[2] || instruction[1] == instruction[3]) && notBlocked(instruction))
 	{
 		if (!this->currPlayer(instruction))
 		{
-			string toSet = "";
-			toSet += instruction[2];
-			toSet += instruction[3];
-
-			Soldier* tempCell = _board->setCell(this, toSet);
-			if (tempCell != nullptr)
+			if (checkChess() >= 0)
 			{
-				delete tempCell;
-			}
-			toSet = "";
-			toSet += instruction[0];
-			toSet += instruction[1];
-			_board->setCell(nullptr, toSet);
+				string toSet = "";
+				toSet += instruction[2];
+				toSet += instruction[3];
 
-			this->checkChess(instruction) ? toReturn = "1" : toReturn = "0";
+				Soldier* tempCell = _board->setCell(this, toSet);
+				if (tempCell != nullptr)
+				{
+					delete tempCell;
+				}
+
+				toSet = "";
+				toSet += instruction[0];
+				toSet += instruction[1];
+				_board->setCell(nullptr, toSet);
+
+				checkChess() == 1 ? toReturn = "1" : toReturn = "0";
+			}
+			else
+			{
+				toReturn = "4";
+			}
 		}
 		else
 		{
@@ -54,37 +62,6 @@ string Rook::move(string instruction)
 	}
 
 	return toReturn;
-}
-
-
-/*
-Input: the place the piece was moved to
-Output: -1 if move will make chess on you, 0 if no chess, 1 if move will make chess on enemy
-function for checking if there is chess
-*/
-int Rook::checkChess(string instruction)
-{
-	Soldier* temp = nullptr;
-	Soldier* current = nullptr;
-	for (int i = 0; i < SIZE; i++)
-	{
-		for (int j = 0; j < SIZE; j++)
-		{
-			current = _board->getCell(instruction);
-			temp = (*this->_board)(i, j);
-			if (current && temp)
-			{
-				if (temp->getType() == string("King") && temp->getColor() != current->getColor())
-				{
-					if (instruction[0] == instruction[2] || instruction[1] == instruction[3])
-					{
-						return true;
-					}
-				}
-			}
-		}
-	}
-	return false;
 }
 
 
@@ -119,4 +96,20 @@ bool Rook::notBlocked(string instruction)
 	}
 
 	return toReturn;
+}
+
+
+/*
+Input: moving instrctions
+Output: can the piece move there or not
+function to check if a piece can make a certain move
+*/
+bool Rook::canMove(string instruction)
+{
+	if ((instruction[0] == instruction[2] || instruction[1] == instruction[3]) && notBlocked(instruction))
+	{
+		return true;
+	}
+	
+	return false;
 }

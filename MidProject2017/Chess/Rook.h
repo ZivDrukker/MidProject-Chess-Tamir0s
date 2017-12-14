@@ -5,12 +5,10 @@
 
 class Rook : public Soldier
 {
-private:
-	virtual int checkChess(string instruction);
-
 public:
 	Rook(int color, Board* board);
 	~Rook() = default;
 	virtual string move(string instruction);
 	virtual bool notBlocked(string instruction);
+	virtual bool canMove(string instruction);
 };

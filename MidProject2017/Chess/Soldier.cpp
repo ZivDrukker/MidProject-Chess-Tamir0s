@@ -58,3 +58,82 @@ bool Soldier::currPlayer(string instruction)
 
 	return false;
 }
+
+
+/*
+Input: the moving instruction for the piece
+Output: 0 if no chess, 1 if chess on enemy, -1 if self chess
+function to check the board for a chess
+*/
+int Soldier::checkChess()
+{
+	Soldier* kingB = nullptr;
+	Soldier* kingW = nullptr;
+
+	//find two kings
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < SIZE; j++)
+		{
+			if ((*this->_board)(i, j))
+			{
+				if ((*this->_board)(i, j)->getType() == "King")
+				{
+					(*this->_board)(i, j)->getColor() == 0 ? kingW = (*this->_board)(i, j) : kingB = (*this->_board)(i, j);
+				}
+			}
+		}
+	}
+
+	//check if self chess
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < SIZE; j++)
+		{
+			if ((*this->_board)(i, j))
+			{
+				if ((*this->_board)(i, j)->getColor())
+				{
+					if ((*this->_board)(i, j)->canMove(string(_board->getXandY((*this->_board)(i, j)) + _board->getXandY(kingW) + "")))
+					{
+						return -1;
+					}
+				}
+				else
+				{
+					if ((*this->_board)(i, j)->canMove(string(_board->getXandY((*this->_board)(i, j)) + _board->getXandY(kingB) + "")))
+					{
+						return -1;
+					}
+				}
+			}
+		}
+	}
+
+	//check normal chess
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < SIZE; j++)
+		{
+			if ((*this->_board)(i, j))
+			{
+				if ((*this->_board)(i, j)->getColor())
+				{
+					if ((*this->_board)(i, j)->canMove(string(_board->getXandY((*this->_board)(i, j)) + _board->getXandY(kingB) + "")))
+					{
+						return 1;
+					}
+				}
+				else
+				{
+					if ((*this->_board)(i, j)->canMove(string(_board->getXandY((*this->_board)(i, j)) + _board->getXandY(kingW) + "")))
+					{
+						return 1;
+					}
+				}
+			}
+		}
+	}
+
+	return 0;
+}

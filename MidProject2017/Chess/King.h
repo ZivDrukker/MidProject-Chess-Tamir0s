@@ -5,12 +5,10 @@
 
 class King : public Soldier
 {
-private:
-	virtual int checkChess(string instruction);
-
 public:
 	King(int color, Board* board);
 	~King() = default;
 	virtual string move(string instruction);
 	virtual bool notBlocked(string instruction);
+	virtual bool canMove(string instruction);
 };

@@ -24,21 +24,29 @@ string King::move(string instruction)
 	{
 		if (!this->currPlayer(instruction))
 		{
-			string toSet = "";
-			toSet += instruction[2];
-			toSet += instruction[3];
-
-			Soldier* tempCell = _board->setCell(this, toSet);
-			if (tempCell != nullptr)
+			if (checkChess() >= 0)
 			{
-				delete tempCell;
-			}
-			toReturn = "0";
+				string toSet = "";
+				toSet += instruction[2];
+				toSet += instruction[3];
 
-			toSet = "";
-			toSet += instruction[0];
-			toSet += instruction[1];
-			_board->setCell(nullptr, toSet);
+				Soldier* tempCell = _board->setCell(this, toSet);
+				if (tempCell != nullptr)
+				{
+					delete tempCell;
+				}
+
+				checkChess() == 1 ? toReturn = "1" : toReturn = "0";
+
+				toSet = "";
+				toSet += instruction[0];
+				toSet += instruction[1];
+				_board->setCell(nullptr, toSet);
+			}
+			else
+			{
+				toReturn = "4";
+			}
 		}
 		else
 		{
@@ -49,18 +57,8 @@ string King::move(string instruction)
 	{
 		toReturn = "6";
 	}
+
 	return toReturn;
-}
-
-
-/*
-Input: the moving instruction for the piece
-Output: True if there is a chess, else False
-function to check the board for a chess
-*/
-int King::checkChess(string instruction)
-{
-
 }
 
 
@@ -71,5 +69,21 @@ function to check if a piece's movement os blocked by a diffrent player
 */
 bool King::notBlocked(string instruction)
 {
+	return false;
+}
+
+
+/*
+Input: moving instructions
+Output: can the piece move or not
+function to check 
+*/
+bool King::canMove(string instruction)
+{
+	if (abs(instruction[0] - instruction[2]) == 1 || abs(instruction[3] - instruction[1]) == 1)
+	{
+		return true;
+	}
+
 	return false;
 }
