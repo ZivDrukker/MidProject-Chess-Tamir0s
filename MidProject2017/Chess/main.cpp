@@ -50,24 +50,37 @@ void main()
 
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
-
+	int counter = 0;
 	while (msgFromGraphics != "quit")
 	{
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
-		
 		// YOUR CODE
 		string toGet = "";
 		toGet += msgFromGraphics[0];
 		toGet += msgFromGraphics[1];
-
-		string strToSend = board->getCell(toGet)->move(msgFromGraphics);
-
-		strcpy_s(msgToGraphics, strToSend.c_str()); // msgToGraphics should contain the result of the operation
-
-
-
-
+		Soldier* cell = board->getCell(toGet);
+		string strToSend = "";
+		if (cell)
+		{
+			if (cell->getColor() % 2 == counter % 2)
+			{
+				strToSend = board->getCell(toGet)->move(msgFromGraphics);
+				strcpy_s(msgToGraphics, strToSend.c_str()); // msgToGraphics should contain the result of the operation
+			}
+			else
+			{
+				strToSend = "2";
+			}
+		}
+		else
+		{
+			strToSend = "2";
+		}
+		if (strToSend == "0" || strToSend == "1")
+		{
+			counter++;
+		}
 		// return result to graphics		
 		p.sendMessageToGraphics(msgToGraphics);   
 
