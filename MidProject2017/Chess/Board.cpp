@@ -30,7 +30,6 @@ Input:
 Output:
 d'tor function for Board object
 */
-
 Board::~Board()
 {
 	int i = 0, j = 0;

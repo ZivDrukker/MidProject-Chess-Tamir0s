@@ -6,7 +6,7 @@
 class Rook : public Soldier
 {
 private:
-	bool checkChess(string instruction);
+	virtual int checkChess(string instruction);
 
 public:
 	Rook(int color, Board* board);

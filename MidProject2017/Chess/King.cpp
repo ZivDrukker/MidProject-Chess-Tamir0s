@@ -58,9 +58,9 @@ Input: the moving instruction for the piece
 Output: True if there is a chess, else False
 function to check the board for a chess
 */
-bool King::checkChess(string instruction)
+int King::checkChess(string instruction)
 {
-	return false;//TODO: build the func
+
 }
 
 

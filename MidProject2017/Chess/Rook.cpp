@@ -59,10 +59,10 @@ string Rook::move(string instruction)
 
 /*
 Input: the place the piece was moved to
-Output: NONE
+Output: -1 if move will make chess on you, 0 if no chess, 1 if move will make chess on enemy
 function for checking if there is chess
 */
-bool Rook::checkChess(string instruction)
+int Rook::checkChess(string instruction)
 {
 	Soldier* temp = nullptr;
 	Soldier* current = nullptr;

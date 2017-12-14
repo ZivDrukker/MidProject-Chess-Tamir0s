@@ -51,6 +51,7 @@ void main()
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
 	int counter = 0;
+
 	while (msgFromGraphics != "quit")
 	{
 		// should handle the string the sent from graphics
@@ -61,12 +62,12 @@ void main()
 		toGet += msgFromGraphics[1];
 		Soldier* cell = board->getCell(toGet);
 		string strToSend = "";
-		if (cell)
+
+		if (cell != nullptr)
 		{
 			if (cell->getColor() % 2 == counter % 2)
 			{
-				strToSend = board->getCell(toGet)->move(msgFromGraphics);
-				strcpy_s(msgToGraphics, strToSend.c_str()); // msgToGraphics should contain the result of the operation
+				strToSend = cell->move(msgFromGraphics);
 			}
 			else
 			{
@@ -77,10 +78,14 @@ void main()
 		{
 			strToSend = "2";
 		}
+
 		if (strToSend == "0" || strToSend == "1")
 		{
 			counter++;
 		}
+
+		strcpy_s(msgToGraphics, strToSend.c_str()); // msgToGraphics should contain the result of the operation
+
 		// return result to graphics		
 		p.sendMessageToGraphics(msgToGraphics);   
 
