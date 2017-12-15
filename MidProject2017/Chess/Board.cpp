@@ -6,6 +6,8 @@
 #include "Knight.h"
 #include "Queen.h"
 #include "Bishop.h"
+#include "Pawn.h"
+
 
 
 
@@ -16,31 +18,20 @@ c'tor function for Board object
 */
 Board::Board(string str)
 {
-	int i = 0;
-	//_gameBoard = new Soldier**[SIZE];
-	
-	for (i = 0; i < SIZE; i++)
-	{
-		//_gameBoard[i] = new Soldier*;
-		cout << "a";
-	}
-
 	setBoard(str);
 }
 
 
 /*
-Input:
-Output:
+Input: NONE
+Output: NONE
 d'tor function for Board object
 */
 Board::~Board()
 {
-	int i = 0, j = 0;
-
-	for (i = 0; i < SIZE; i++)
+	for (int i = 0; i < SIZE; i++)
 	{
-		for (j = 0; j < SIZE; j++)
+		for (int j = 0; j < SIZE; j++)
 		{
 			if (_gameBoard[i][j] != nullptr)
 			{
@@ -49,8 +40,6 @@ Board::~Board()
 			}
 		}
 	}
-
-	//delete _gameBoard;
 }
 
 
@@ -78,7 +67,6 @@ Soldier* Board::setCell(Soldier* piece, string cell)
 	Soldier* temp = _gameBoard[row][col];
 	_gameBoard[row][col] = piece;
 	return temp;
-	//_gameBoard[(int)instruction[0]][(int)instruction[1]] = _boa;
 }
 
 
@@ -146,6 +134,14 @@ void Board::setBoard(string str)
 
 			case BISHOP_WHITE:
 				_gameBoard[i][j] = new Bishop(0, this);
+				break;
+
+			case PAWN_BLACK:
+				_gameBoard[i][j] = new Pawn(1, this);
+				break;
+
+			case PAWN_WHITE:
+				_gameBoard[i][j] = new Pawn(0, this);
 				break;
 
 			case EMPTY_PIECE:
