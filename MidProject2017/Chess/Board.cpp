@@ -163,9 +163,9 @@ function for printing the board
 */
 void Board::printBoard()
 {
-	for (int i = 0; i < SIZE; i++)
+	for (int i = SIZE - 1; i >= 0; i--)
 	{
-		for (int j = 0; j < SIZE; j++)
+		for (int j = SIZE - 1; j >= 0; j--)
 		{
 			if (_gameBoard[i][j])
 			{

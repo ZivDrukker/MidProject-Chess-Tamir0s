@@ -61,10 +61,94 @@ bool Soldier::currPlayer(string instruction)
 
 
 /*
+Input: NONE
+Output: true if chess false if not
+the function is checking if there is chess on yourself by moving the piece
+*/
+bool Soldier::checkSelfChess()
+{
+	Soldier* king = nullptr;
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < SIZE; j++)
+		{
+			if ((*this->_board)(i, j))
+			{
+				if ((*this->_board)(i, j)->getType() == "King" && (*this->_board)(i, j)->getColor() == this->getColor())
+				{
+					king = (*this->_board)(i, j);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < SIZE; j++)
+		{
+			if ((*this->_board)(i, j))
+			{
+				if ((*this->_board)(i, j)->getColor() == this->getColor())
+				{
+					if ((*this->_board)(i, j)->canMove(string(_board->getXandY((*this->_board)(i, j)) + _board->getXandY(king) + "")))
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+
+
+/*
+Input: NONE
+Output: true if chess false if not
+the function is checking if there is chess on the enemy by moving the piece
+*/
+bool Soldier::checkEnemyChess()
+{
+	Soldier* king = nullptr;
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < SIZE; j++)
+		{
+			if ((*this->_board)(i, j))
+			{
+				if ((*this->_board)(i, j)->getType() == "King" && (*this->_board)(i, j)->getColor() != this->getColor())
+				{
+					king = (*this->_board)(i, j);
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < SIZE; j++)
+		{
+			if ((*this->_board)(i, j))
+			{
+				if ((*this->_board)(i, j)->getColor() != this->getColor())
+				{
+					if ((*this->_board)(i, j)->canMove(string(_board->getXandY((*this->_board)(i, j)) + _board->getXandY(king) + "")))
+					{
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
+}
+
+/*
 Input: the moving instruction for the piece
 Output: 0 if no chess, 1 if chess on enemy, -1 if self chess
 function to check the board for a chess
 */
+/*
 int Soldier::checkChess()
 {
 	Soldier* kingB = nullptr;
@@ -137,3 +221,4 @@ int Soldier::checkChess()
 
 	return 0;
 }
+*/

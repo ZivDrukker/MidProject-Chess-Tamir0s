@@ -27,7 +27,8 @@ public:
 	virtual string move(string instructions) = 0;
 	string getType();
 	int getColor();
-	int checkChess();
+	bool checkEnemyChess();
+	bool checkSelfChess();
 	bool currPlayer(string instruction);
 	virtual bool notBlocked(string instruction) = 0;
 	virtual bool canMove(string instruction) = 0;

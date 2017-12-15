@@ -27,29 +27,33 @@ string Rook::move(string instruction)
 	{
 		if (!this->currPlayer(instruction))
 		{
-			if (checkChess() >= 0)
-			{
 				string toSet = "";
 				toSet += instruction[2];
 				toSet += instruction[3];
 
 				Soldier* tempCell = _board->setCell(this, toSet);
-				if (tempCell != nullptr)
-				{
-					delete tempCell;
-				}
 
-				toSet = "";
-				toSet += instruction[0];
-				toSet += instruction[1];
+				string toSetNull = "";
+				toSetNull = "";
+				toSetNull += instruction[0];
+				toSetNull += instruction[1];
 				_board->setCell(nullptr, toSet);
 
-				checkChess() == 1 ? toReturn = "1" : toReturn = "0";
-			}
-			else
-			{
-				toReturn = "4";
-			}
+				if (!this->checkSelfChess())
+				{
+					if (tempCell != nullptr)
+					{
+						delete tempCell;
+					}
+					this->checkEnemyChess() == true ? toReturn = "1" : toReturn = "0";;
+				}
+				else
+				{
+					_board->setCell(this, toSetNull);
+					_board->setCell(tempCell, toSet);
+					toReturn = "4";
+				}
+
 		}
 		else
 		{
