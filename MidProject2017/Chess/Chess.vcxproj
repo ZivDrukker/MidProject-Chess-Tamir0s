@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="King.cpp" />
+    <ClCompile Include="Knight.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rook.cpp" />
     <ClCompile Include="Soldier.cpp" />
@@ -29,6 +30,7 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="King.h" />
+    <ClInclude Include="Knight.h" />
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Rook.h" />
     <ClInclude Include="Soldier.h" />

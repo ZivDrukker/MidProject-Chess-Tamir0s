@@ -22,7 +22,6 @@ string King::move(string instruction)
 	string toReturn = "";
 	if (abs(instruction[0] - instruction[2]) == 1 || abs(instruction[3] - instruction[1]) == 1)
 	{
-
 		if (!this->currPlayer(instruction))
 		{
 			string toSet = "";
@@ -30,65 +29,22 @@ string King::move(string instruction)
 			toSet += instruction[3];
 
 			Soldier* tempCell = _board->setCell(this, toSet);
+			if (tempCell != nullptr)
+			{
+				delete tempCell;
+			}
 
-			string toSetNull = "";
-			toSetNull = "";
-			toSetNull += instruction[0];
-			toSetNull += instruction[1];
+			toReturn = "0";
+
+			toSet = "";
+			toSet += instruction[0];
+			toSet += instruction[1];
 			_board->setCell(nullptr, toSet);
-
-			if (!this->checkSelfChess())
-			{
-				if (tempCell != nullptr)
-				{
-					delete tempCell;
-				}
-				this->checkEnemyChess() == true ? toReturn = "1" : toReturn = "0";;
-			}
-			else
-			{
-				_board->setCell(this, toSetNull);
-				_board->setCell(tempCell, toSet);
-				toReturn = "4";
-			}
-
 		}
 		else
 		{
 			toReturn = "3";
 		}
-		/*
-		if (!this->currPlayer(instruction))
-		{
-			if (checkChess() >= 0)
-			{
-				string toSet = "";
-				toSet += instruction[2];
-				toSet += instruction[3];
-
-				Soldier* tempCell = _board->setCell(this, toSet);
-				if (tempCell != nullptr)
-				{
-					delete tempCell;
-				}
-
-				checkChess() == 1 ? toReturn = "1" : toReturn = "0";
-
-				toSet = "";
-				toSet += instruction[0];
-				toSet += instruction[1];
-				_board->setCell(nullptr, toSet);
-			}
-			else
-			{
-				toReturn = "4";
-			}
-		}
-		else
-		{
-			toReturn = "3";
-		}
-		*/
 	}
 	else
 	{
