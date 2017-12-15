@@ -31,5 +31,5 @@ public:
 	bool checkSelfChess();
 	bool currPlayer(string instruction);
 	virtual bool notBlocked(string instruction) = 0;
-	virtual bool canMove(string instruction) = 0;
+	virtual bool canEat(string instruction) = 0;
 };

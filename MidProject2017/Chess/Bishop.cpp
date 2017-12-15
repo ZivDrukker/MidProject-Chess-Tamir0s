@@ -8,7 +8,7 @@ Input: color to set user color and board
 Output: NONE
 c'tor function for King object
 */
-Bishop::Bishop(int color, Board* board) : Soldier("Queen", color, board)
+Bishop::Bishop(int color, Board* board) : Soldier("Bishop", color, board)
 {
 }
 
@@ -72,7 +72,7 @@ Input: moving instructions
 Output: can the piece move or not
 function to check 
 */
-bool Bishop::canMove(string instruction)
+bool Bishop::canEat(string instruction)
 {
 	if (abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && (instruction[0] != instruction[2] || instruction[1] != instruction[3]))
 	{

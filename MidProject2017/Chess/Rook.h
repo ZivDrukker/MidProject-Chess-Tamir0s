@@ -10,5 +10,5 @@ public:
 	~Rook() = default;
 	virtual string move(string instruction);
 	virtual bool notBlocked(string instruction);
-	virtual bool canMove(string instruction);
+	virtual bool canEat(string instruction);
 };

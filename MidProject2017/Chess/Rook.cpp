@@ -97,7 +97,7 @@ Input: moving instrctions
 Output: can the piece move there or not
 function to check if a piece can make a certain move
 */
-bool Rook::canMove(string instruction)
+bool Rook::canEat(string instruction)
 {
 	if ((instruction[0] == instruction[2] || instruction[1] == instruction[3]) && notBlocked(instruction))
 	{

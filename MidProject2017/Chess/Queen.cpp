@@ -71,7 +71,7 @@ Input: moving instructions
 Output: can the piece move or not
 function to check 
 */
-bool Queen::canMove(string instruction)
+bool Queen::canEat(string instruction)
 {
 	if (abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]))
 	{

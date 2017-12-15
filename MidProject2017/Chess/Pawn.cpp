@@ -8,7 +8,7 @@ Input: color to set user color and board
 Output: NONE
 c'tor function for King object
 */
-Pawn::Pawn(int color, Board* board) : Soldier("Queen", color, board), alreadyMoved(false)
+Pawn::Pawn(int color, Board* board) : Soldier("Pawn", color, board), alreadyMoved(false)
 {
 }
 
@@ -21,7 +21,7 @@ string Pawn::move(string instruction)
 {
 	string toReturn = "";
 
-	if (abs(instruction[1] - instruction[3]) == 1 || (abs(instruction[1] - instruction[3]) == 2 && !alreadyMoved))
+	if ((abs(instruction[1] - instruction[3]) == 1 && (instruction[0] - instruction[2]) == 0 || (abs(instruction[1] - instruction[3]) == 2 && !alreadyMoved) && (instruction[0] - instruction[2]) == 0) && !canEat(instruction))
 	{
 		if (!this->currPlayer(instruction))
 		{
@@ -71,13 +71,16 @@ bool Pawn::notBlocked(string instruction)
 /*
 Input: moving instructions
 Output: can the piece move or not
-function to check 
+function to check if a pawn can eat in a given spot
 */
-bool Pawn::canMove(string instruction)
+bool Pawn::canEat(string instruction)
 {
-	if (abs(instruction[0] - instruction[2]) == 1 && abs(instruction[3] - instruction[1]) == 1)
+	if ((*this->_board).getCell(string(instruction[2] + instruction[3] + "")))
 	{
-		return true;
+		if (abs(instruction[0] - instruction[2]) == 1 && abs(instruction[3] - instruction[1]) == 1)
+		{
+			return true;
+		}
 	}
 
 	return false;

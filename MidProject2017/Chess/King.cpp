@@ -71,7 +71,7 @@ Input: moving instructions
 Output: can the piece move or not
 function to check 
 */
-bool King::canMove(string instruction)
+bool King::canEat(string instruction)
 {
 	if (abs(instruction[0] - instruction[2]) == 1 || abs(instruction[3] - instruction[1]) == 1)
 	{
