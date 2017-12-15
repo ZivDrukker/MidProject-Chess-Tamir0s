@@ -3,6 +3,9 @@
 #include "Board.h"
 #include "King.h" //need for fixing the errors
 #include "Rook.h"
+#include "Knight.h"
+#include "Queen.h"
+
 
 
 /*
@@ -120,10 +123,25 @@ void Board::setBoard(string str)
 				_gameBoard[i][j] = new Rook(0, this);
 				break;
 
+			case KNIGHT_BLACK:
+				_gameBoard[i][j] = new Knight(1, this);
+				break;
+
+			case KNIGHT_WHITE:
+				_gameBoard[i][j] = new Knight(0, this);
+				break;
+			
+			case QUEEN_BLACK:
+				_gameBoard[i][j] = new Queen(1, this);
+				break;
+			
+			case QUEEN_WHITE:
+				_gameBoard[i][j] = new Queen(0, this);
+				break;
+
 			case EMPTY_PIECE:
 				_gameBoard[i][j] = nullptr;
 				break;
-
 			default:
 				break;
 			}

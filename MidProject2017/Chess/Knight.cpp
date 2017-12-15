@@ -8,7 +8,7 @@ Input: color to set user color and board
 Output: NONE
 c'tor function for King object
 */
-Knight::Knight(int color, Board* board) : Soldier("King", color, board)
+Knight::Knight(int color, Board* board) : Soldier("Knight", color, board)
 {
 }
 
