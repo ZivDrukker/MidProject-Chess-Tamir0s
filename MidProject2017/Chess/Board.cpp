@@ -5,6 +5,7 @@
 #include "Rook.h"
 #include "Knight.h"
 #include "Queen.h"
+#include "Bishop.h"
 
 
 
@@ -137,6 +138,14 @@ void Board::setBoard(string str)
 			
 			case QUEEN_WHITE:
 				_gameBoard[i][j] = new Queen(0, this);
+				break;
+
+			case BISHOP_BLACK:
+				_gameBoard[i][j] = new Bishop(1, this);
+				break;
+
+			case BISHOP_WHITE:
+				_gameBoard[i][j] = new Bishop(0, this);
 				break;
 
 			case EMPTY_PIECE:
