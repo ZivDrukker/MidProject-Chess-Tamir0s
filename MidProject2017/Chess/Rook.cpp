@@ -68,8 +68,9 @@ bool Rook::notBlocked(string instruction)
 	bool toReturn = true;
 	int staticColOrRow = 0;
 	int i = 0;
-	int iCol = ((int)instruction[0] - A_ASCII), iRow = abs((int)instruction[1] - ZERO_ASCII - 1);
-	int jCol = ((int)instruction[2] - A_ASCII), jRow = abs((int)instruction[3] - ZERO_ASCII - 1);
+
+	int iCol = ((int)instruction[0] - A_ASCII), iRow = SIZE - 1 - ((int)instruction[1] - ZERO_ASCII - 1);
+	int jCol = ((int)instruction[2] - A_ASCII), jRow = SIZE - 1 - ((int)instruction[3] - ZERO_ASCII - 1);
 
 	if (instruction[0] == instruction[2])
 	{

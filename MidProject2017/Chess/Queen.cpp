@@ -20,7 +20,7 @@ function for moving the piece
 string Queen::move(string instruction)
 {
 	string toReturn = "";
-	if (abs(instruction[0] - instruction[2]) ==  abs(instruction[3] - instruction[1]))
+	if ((abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1])) || (instruction[0] == instruction[2] || instruction[1] == instruction[3]))
 	{
 		if (!this->currPlayer(instruction))
 		{

@@ -50,7 +50,7 @@ function to get the soldier in a specific place by a given string
 */
 Soldier* Board::getCell(string cell)
 {
-	int col = ((int)cell[0] - A_ASCII), row = SIZE - ((int)cell[1] - ZERO_ASCII - 1);
+	int col = ((int)cell[0] - A_ASCII), row = SIZE - 1 - ((int)cell[1] - ZERO_ASCII - 1);
 
 	return _gameBoard[row][col];
 }
@@ -63,7 +63,7 @@ function to set a soldier to a cell
 */
 Soldier* Board::setCell(Soldier* piece, string cell)
 {
-	int col = ((int)cell[0] - A_ASCII), row = SIZE - ((int)cell[1] - ZERO_ASCII - 1);
+	int col = ((int)cell[0] - A_ASCII), row = SIZE - 1 - ((int)cell[1] - ZERO_ASCII - 1);
 	Soldier* temp = _gameBoard[row][col];
 	_gameBoard[row][col] = piece;
 	return temp;
@@ -186,17 +186,17 @@ function for printing the board
 */
 void Board::printBoard()
 {
-	for (int i = SIZE - 1; i >= 0; i--)
+	for (int i = 0; i < SIZE; i++)
 	{
 		for (int j = 0; j < SIZE; j++)
 		{
 			if (_gameBoard[i][j])
 			{
-				cout << _gameBoard[i][j]->getType() << _gameBoard[i][j]->getColor() << " ";
+				cout << _gameBoard[i][j]->getType() << _gameBoard[i][j]->getColor() << "	";
 			}
 			else
 			{
-				cout << "# ";
+				cout << "#	";
 			}
 		}
 		cout << std::endl;

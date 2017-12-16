@@ -20,37 +20,74 @@ function for moving the piece
 string Pawn::move(string instruction)
 {
 	string toReturn = "";
-
-	if ( (abs(instruction[1] - instruction[3]) == 1 && (instruction[0] - instruction[2]) == 0 || (abs(instruction[1] - instruction[3]) == 2 && !alreadyMoved) && (instruction[0] - instruction[2]) == 0) && !canEat(instruction))
+	int color = this->getColor();
+	if(color == 0)
 	{
-		if (!this->currPlayer(instruction))
+		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == -1) || ((instruction[1] - instruction[3] == -2) && !alreadyMoved))) || canEat(instruction))
 		{
-			string toSet = "";
-			toSet += instruction[2];
-			toSet += instruction[3];
-
-			Soldier* tempCell = _board->setCell(this, toSet);
-			if (tempCell != nullptr)
+			if (!this->currPlayer(instruction))
 			{
-				delete tempCell;
+				string toSet = "";
+				toSet += instruction[2];
+				toSet += instruction[3];
+
+				Soldier* tempCell = _board->setCell(this, toSet);
+				if (tempCell != nullptr)
+				{
+					delete tempCell;
+				}
+
+				toReturn = "0";
+
+				toSet = "";
+				toSet += instruction[0];
+				toSet += instruction[1];
+				_board->setCell(nullptr, toSet);
+				alreadyMoved = true;
 			}
-
-			toReturn = "0";
-
-			toSet = "";
-			toSet += instruction[0];
-			toSet += instruction[1];
-			_board->setCell(nullptr, toSet);
-			alreadyMoved = true;
+			else
+			{
+				toReturn = "3";
+			}
 		}
 		else
 		{
-			toReturn = "3";
+			toReturn = "6";
 		}
 	}
 	else
 	{
-		toReturn = "6";
+		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == 1) || ((instruction[1] - instruction[3] == 2) && !alreadyMoved))) || canEat(instruction))
+		{
+			if (!this->currPlayer(instruction))
+			{
+				string toSet = "";
+				toSet += instruction[2];
+				toSet += instruction[3];
+
+				Soldier* tempCell = _board->setCell(this, toSet);
+				if (tempCell != nullptr)
+				{
+					delete tempCell;
+				}
+
+				toReturn = "0";
+
+				toSet = "";
+				toSet += instruction[0];
+				toSet += instruction[1];
+				_board->setCell(nullptr, toSet);
+				alreadyMoved = true;
+			}
+			else
+			{
+				toReturn = "3";
+			}
+		}
+		else
+		{
+			toReturn = "6";
+		}
 	}
 
 	return toReturn;
@@ -75,11 +112,21 @@ function to check if a pawn can eat in a given spot
 */
 bool Pawn::canEat(string instruction)
 {
-	if ((*this->_board).getCell(string(instruction[2] + instruction[3] + "")))
+	string newInstruction = "";
+	newInstruction += instruction[2];
+	newInstruction += instruction[3];
+	if ((*this->_board).getCell(newInstruction))
 	{
-		if (abs(instruction[0] - instruction[2]) == 1 && abs(instruction[3] - instruction[1]) == 1)
+		if (abs(instruction[0] - instruction[2]) == 1)
 		{
-			return true;
+			if (instruction[1] - instruction[3] == 1 && this->getColor() == 1)
+			{
+				return true;
+			}
+			else if (instruction[1] - instruction[3] == -1 && this->getColor() == 0)
+			{
+				return true;
+			}
 		}
 	}
 
