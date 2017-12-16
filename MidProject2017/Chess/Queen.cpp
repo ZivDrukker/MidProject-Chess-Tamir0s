@@ -53,7 +53,7 @@ bool Queen::notBlocked(string instruction)
 		staticColOrRow = iCol;
 		for (i = min(iRow, jRow) + 1; i < max(iRow, jRow) && toReturn; i++)
 		{
-			(*this->_board)(i, staticColOrRow) ? toReturn = false : toReturn = true;
+			(*this->_board)(i, staticColOrRow) != nullptr ? toReturn = false : toReturn = true;
 		}
 	}
 	else
@@ -61,14 +61,17 @@ bool Queen::notBlocked(string instruction)
 		staticColOrRow = iRow;
 		for (i = min(iCol, jCol) + 1; i < max(iCol, jCol) && toReturn; i++)
 		{
-			(*this->_board)(staticColOrRow, i) ? toReturn = false : toReturn = true;
+			(*this->_board)(staticColOrRow, i) != nullptr ? toReturn = false : toReturn = true;
 		}
 	}
 
 	//bishop like check
-	for (i = min(jRow, iRow), j = min(iCol, jCol); i < max(jRow, iRow) && j < max(jCol, iCol) && toReturn; i++, j++)
+	for (int i = min(instruction[0], instruction[2]), j = min(instruction[1], instruction[3]); i < max(instruction[0], instruction[2]) && toReturn; i++, j++)
 	{
-		(*this->_board)(i, j) ? toReturn = false : toReturn = true;
+		string toGet = "";
+		toGet += i;
+		toGet += j;
+		_board->getCell(toGet) != nullptr ? toReturn = false : toReturn = true;
 	}
 
 	return toReturn;

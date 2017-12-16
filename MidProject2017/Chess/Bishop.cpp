@@ -41,12 +41,12 @@ function to check if a piece's movement os blocked by a diffrent player
 */
 bool Bishop::notBlocked(string instruction)
 {
-	int i = min((int)instruction[0] - A_ASCII, (int)instruction[2] - A_ASCII), j = min(SIZE - 1 - ((int)instruction[1] - ZERO_ASCII - 1), SIZE - 1 - ((int)instruction[3] - ZERO_ASCII - 1));
-	int finalI = max((int)instruction[0] - A_ASCII, (int)instruction[2] - A_ASCII), finalJ = max(SIZE - 1 - ((int)instruction[1] - ZERO_ASCII - 1), SIZE - 1 - ((int)instruction[3] - ZERO_ASCII - 1));
-	
-	for (i = i , j = j; i < finalI && j < finalJ; i++, j++)
+	for (int i = min(instruction[0], instruction[2]), j = min(instruction[1], instruction[3]); i < max(instruction[0], instruction[2]); i++, j++)
 	{
-		if ((*this->_board)(j, i))
+		string toGet = "";
+		toGet += i;
+		toGet += j;
+		if (_board->getCell(toGet) != nullptr)
 		{
 			return false;
 		}

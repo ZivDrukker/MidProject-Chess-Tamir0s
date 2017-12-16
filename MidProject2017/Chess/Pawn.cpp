@@ -21,9 +21,12 @@ string Pawn::move(string instruction)
 {
 	string toReturn = "";
 	int color = this->getColor();
+	string toGet = "";
+	toGet += instruction[2];
+	toGet += instruction[3];
 	if(color == 0)
 	{
-		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == -1) || ((instruction[1] - instruction[3] == -2) && !_alreadyMoved && notBlocked(instruction)))) || canEat(instruction))
+		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == -1) && !_board->getCell(toGet) || ((instruction[1] - instruction[3] == -2) &&  !_alreadyMoved && !_board->getCell(toGet) && notBlocked(instruction)))) || canEat(instruction))
 		{
 			toReturn = moveAll(instruction);
 		}
@@ -34,7 +37,7 @@ string Pawn::move(string instruction)
 	}
 	else
 	{
-		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == 1) || ((instruction[1] - instruction[3] == 2) && !_alreadyMoved && notBlocked(instruction)))) || canEat(instruction))
+		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == 1) && !_board->getCell(toGet) || ((instruction[1] - instruction[3] == 2) && !_alreadyMoved && !_board->getCell(toGet) && notBlocked(instruction)))) || canEat(instruction))
 		{
 			toReturn = moveAll(instruction);
 		}

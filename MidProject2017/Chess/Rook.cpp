@@ -55,7 +55,7 @@ bool Rook::notBlocked(string instruction)
 		staticColOrRow = iCol;
 		for (i = min(iRow, jRow) + 1; i < max(iRow, jRow) && toReturn; i++)
 		{
-			(*this->_board)(i, staticColOrRow) ? toReturn = false : toReturn = true;
+			(*this->_board)(i, staticColOrRow) != nullptr ? toReturn = false : toReturn = true;
 		}
 	}
 	else
@@ -63,7 +63,7 @@ bool Rook::notBlocked(string instruction)
 		staticColOrRow = iRow;
 		for (i = min(iCol, jCol) + 1; i < max(iCol, jCol) && toReturn; i++)
 		{
-			(*this->_board)(staticColOrRow, i) ? toReturn = false : toReturn = true;
+			(*this->_board)(staticColOrRow, i) != nullptr ? toReturn = false : toReturn = true;
 		}
 	}
 
