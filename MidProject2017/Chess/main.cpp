@@ -58,6 +58,8 @@ void main()
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 		// YOUR CODE
+		board->printBoard();
+
 		string toGet = "";
 		toGet += msgFromGraphics[0];
 		toGet += msgFromGraphics[1];

@@ -21,7 +21,7 @@ string Pawn::move(string instruction)
 {
 	string toReturn = "";
 
-	if ((abs(instruction[1] - instruction[3]) == 1 && (instruction[0] - instruction[2]) == 0 || (abs(instruction[1] - instruction[3]) == 2 && !alreadyMoved) && (instruction[0] - instruction[2]) == 0) && !canEat(instruction))
+	if ( (abs(instruction[1] - instruction[3]) == 1 && (instruction[0] - instruction[2]) == 0 || (abs(instruction[1] - instruction[3]) == 2 && !alreadyMoved) && (instruction[0] - instruction[2]) == 0) && !canEat(instruction))
 	{
 		if (!this->currPlayer(instruction))
 		{
