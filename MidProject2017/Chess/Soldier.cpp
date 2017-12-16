@@ -12,7 +12,52 @@ Soldier::Soldier(string type, int color, Board* board) : _type(type), _color(col
 {
 }
 
+string Soldier::moveAll(string instruction)
+{
+	string toReturn = "";
+	if (!this->currPlayer(instruction))
+	{
+		string toSet = "";
+		toSet += instruction[2];
+		toSet += instruction[3];
 
+		Soldier* tempCell = _board->setCell(this, toSet);
+
+		toSet = "";
+		toSet += instruction[0];
+		toSet += instruction[1];
+		_board->setCell(nullptr, toSet);
+
+		if (!checkSelfChess())
+		{
+			if (tempCell != nullptr)
+			{
+				delete tempCell;
+			}
+			checkEnemyChess() ? toReturn = "1" : toReturn = "0";
+		}
+		else
+		{
+			string toSet = "";
+			toSet += instruction[2];
+			toSet += instruction[3];
+			_board->setCell(tempCell, toSet);
+
+			toSet = "";
+			toSet += instruction[0];
+			toSet += instruction[1];
+			_board->setCell(this, toSet);
+
+			toReturn = "4";
+		}
+
+	}
+	else
+	{
+		toReturn = "3";
+	}
+	return toReturn;
+}
 
 /*
 Input: NONE
@@ -88,7 +133,7 @@ bool Soldier::checkSelfChess()
 		{
 			if ((*this->_board)(i, j))
 			{
-				if ((*this->_board)(i, j)->getColor() == this->getColor())
+				if ((*this->_board)(i, j)->getColor() != this->getColor())
 				{
 					if ((*this->_board)(i, j)->canEat(string(_board->getXandY((*this->_board)(i, j)) + _board->getXandY(king) + "")))
 					{
@@ -130,7 +175,7 @@ bool Soldier::checkEnemyChess()
 		{
 			if ((*this->_board)(i, j))
 			{
-				if ((*this->_board)(i, j)->getColor() != this->getColor())
+				if ((*this->_board)(i, j)->getColor() == this->getColor())
 				{
 					if ((*this->_board)(i, j)->canEat(string(_board->getXandY((*this->_board)(i, j)) + _board->getXandY(king) + "")))
 					{

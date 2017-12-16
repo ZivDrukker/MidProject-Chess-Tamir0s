@@ -25,29 +25,7 @@ string Rook::move(string instruction)
 	string toReturn = "";
 	if ((instruction[0] == instruction[2] || instruction[1] == instruction[3]) && notBlocked(instruction))
 	{
-		if (!this->currPlayer(instruction))
-		{
-			string toSet = "";
-			toSet += instruction[2];
-			toSet += instruction[3];
-
-			Soldier* tempCell = _board->setCell(this, toSet);
-			if (tempCell != nullptr)
-			{
-				delete tempCell;
-			}
-
-			toReturn = "0";
-
-			toSet = "";
-			toSet += instruction[0];
-			toSet += instruction[1];
-			_board->setCell(nullptr, toSet);
-		}
-		else
-		{
-			toReturn = "3";
-		}
+		toReturn = moveAll(instruction);
 	}
 	else
 	{

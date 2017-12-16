@@ -30,6 +30,7 @@ public:
 	bool checkEnemyChess();
 	bool checkSelfChess();
 	bool currPlayer(string instruction);
+	string moveAll(string instruction);
 	virtual bool notBlocked(string instruction) = 0;
 	virtual bool canEat(string instruction) = 0;
 };
