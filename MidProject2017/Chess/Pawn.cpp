@@ -56,12 +56,18 @@ function to check if a piece's movement os blocked by a diffrent player
 bool Pawn::notBlocked(string instruction)
 {
 	//no need to check if first move, becuase sent to func only from first move condition
+	string toGet = "";
+	toGet += instruction[0];
+
 	if (this->getColor() == 1)
 	{
-		return (*this->_board)(5, (int)instruction[0] - A_ASCII) != nullptr;
+		toGet += "6";
+
+		return !_board->getCell(toGet);
 	}
 
-	return (*this->_board)(2, (int)instruction[0] - A_ASCII) != nullptr;
+	toGet += "3";
+	return !_board->getCell(toGet);
 }
 
 
@@ -75,6 +81,7 @@ bool Pawn::canEat(string instruction)
 	string newInstruction = "";
 	newInstruction += instruction[2];
 	newInstruction += instruction[3];
+
 	if ((*this->_board).getCell(newInstruction))
 	{
 		if (abs(instruction[0] - instruction[2]) == 1)
