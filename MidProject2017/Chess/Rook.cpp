@@ -53,7 +53,7 @@ bool Rook::notBlocked(string instruction)
 	if (instruction[0] == instruction[2])
 	{
 		staticColOrRow = iCol;
-		for (i = min(iRow, jRow) + 1; i < max(iRow, jRow) && toReturn; i++)//normal min didn't work
+		for (i = min(iRow, jRow) + 1; i < max(iRow, jRow) && toReturn; i++)
 		{
 			(*this->_board)(i, staticColOrRow) ? toReturn = false : toReturn = true;
 		}
@@ -61,7 +61,7 @@ bool Rook::notBlocked(string instruction)
 	else
 	{
 		staticColOrRow = iRow;
-		for (i = min(iCol, jCol) + 1; i < max(iCol, jCol) && toReturn; i++)//normal min didn't work
+		for (i = min(iCol, jCol) + 1; i < max(iCol, jCol) && toReturn; i++)
 		{
 			(*this->_board)(staticColOrRow, i) ? toReturn = false : toReturn = true;
 		}

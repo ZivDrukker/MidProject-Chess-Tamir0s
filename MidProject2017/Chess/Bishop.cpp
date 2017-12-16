@@ -21,7 +21,7 @@ string Bishop::move(string instruction)
 {
 	string toReturn = "";
 
-	if (abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && (instruction[0] != instruction[2] || instruction[1] != instruction[3]))
+	if ((abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && (instruction[0] != instruction[2] || instruction[1] != instruction[3])) && notBlocked(instruction))
 	{
 		toReturn = moveAll(instruction);
 	}
@@ -41,7 +41,18 @@ function to check if a piece's movement os blocked by a diffrent player
 */
 bool Bishop::notBlocked(string instruction)
 {
-	return false;
+	int i = min((int)instruction[0] - A_ASCII, (int)instruction[2] - A_ASCII), j = min(SIZE - 1 - ((int)instruction[1] - ZERO_ASCII - 1), SIZE - 1 - ((int)instruction[3] - ZERO_ASCII - 1));
+	int finalI = max((int)instruction[0] - A_ASCII, (int)instruction[2] - A_ASCII), finalJ = max(SIZE - 1 - ((int)instruction[1] - ZERO_ASCII - 1), SIZE - 1 - ((int)instruction[3] - ZERO_ASCII - 1));
+	
+	for (i = i , j = j; i < finalI && j < finalJ; i++, j++)
+	{
+		if ((*this->_board)(j, i))
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
 
 

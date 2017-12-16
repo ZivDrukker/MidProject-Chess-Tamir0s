@@ -8,7 +8,7 @@ Input: color to set user color and board
 Output: NONE
 c'tor function for King object
 */
-Pawn::Pawn(int color, Board* board) : Soldier("Pawn", color, board), alreadyMoved(false)
+Pawn::Pawn(int color, Board* board) : Soldier("Pawn", color, board), _alreadyMoved(false)
 {
 }
 
@@ -23,7 +23,7 @@ string Pawn::move(string instruction)
 	int color = this->getColor();
 	if(color == 0)
 	{
-		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == -1) || ((instruction[1] - instruction[3] == -2) && !alreadyMoved))) || canEat(instruction))
+		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == -1) || ((instruction[1] - instruction[3] == -2) && !_alreadyMoved && notBlocked(instruction)))) || canEat(instruction))
 		{
 			toReturn = moveAll(instruction);
 		}
@@ -34,7 +34,7 @@ string Pawn::move(string instruction)
 	}
 	else
 	{
-		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == 1) || ((instruction[1] - instruction[3] == 2) && !alreadyMoved))) || canEat(instruction))
+		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == 1) || ((instruction[1] - instruction[3] == 2) && !_alreadyMoved && notBlocked(instruction)))) || canEat(instruction))
 		{
 			toReturn = moveAll(instruction);
 		}
@@ -55,7 +55,13 @@ function to check if a piece's movement os blocked by a diffrent player
 */
 bool Pawn::notBlocked(string instruction)
 {
-	return false;
+	//no need to check if first move, becuase sent to func only from first move condition
+	if (this->getColor() == 1)
+	{
+		return (*this->_board)(5, (int)instruction[0] - A_ASCII) != nullptr;
+	}
+
+	return (*this->_board)(2, (int)instruction[0] - A_ASCII) != nullptr;
 }
 
 

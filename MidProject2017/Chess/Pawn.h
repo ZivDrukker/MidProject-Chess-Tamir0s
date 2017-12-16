@@ -6,7 +6,7 @@
 class Pawn : public Soldier
 {
 private:
-	bool alreadyMoved;
+	bool _alreadyMoved;
 
 public:
 	Pawn(int color, Board* board);
