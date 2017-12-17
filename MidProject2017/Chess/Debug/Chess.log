@@ -1,8 +1,13 @@
-﻿  Soldier.cpp
-  Bishop.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
+﻿  stdafx.cpp
+  main.cpp
+  Soldier.cpp
+  Rook.cpp
+  Queen.cpp
+  Pawn.cpp
   Knight.cpp
   King.cpp
   Board.cpp
-  Chess.vcxproj -> C:\Users\magshimim\Desktop\Magshimim\magshimim second year\programming\Chess\MidProject-Chess-Tamir0s\MidProject2017\Debug\Chess.exe
+  Bishop.cpp
+  Generating Code...
+  LINK : C:\Users\magshimim\Desktop\Magshimim\11th\Advanced Programming\Week 7\MidProject-Chess-Tamir0s\MidProject2017\Debug\Chess.exe not found or not built by the last incremental link; performing full link
+  Chess.vcxproj -> C:\Users\magshimim\Desktop\Magshimim\11th\Advanced Programming\Week 7\MidProject-Chess-Tamir0s\MidProject2017\Debug\Chess.exe

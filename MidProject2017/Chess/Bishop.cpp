@@ -21,7 +21,7 @@ string Bishop::move(string instruction)
 {
 	string toReturn = "";
 
-	if ((abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && (instruction[0] != instruction[2] && instruction[1] != instruction[3])) && notBlocked(instruction))
+	if ((abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && (instruction[0] != instruction[2] || instruction[1] != instruction[3])) && notBlocked(instruction))
 	{
 		toReturn = moveAll(instruction);
 	}
@@ -46,7 +46,7 @@ bool Bishop::notBlocked(string instruction)
 		string toGet = "";
 		toGet += i;
 		toGet += j;
-		if (_board->getCell(toGet) != nullptr)
+		if (_board->getCell(toGet) != nullptr && this != _board->getCell(toGet))
 		{
 			return false;
 		}
@@ -63,7 +63,7 @@ function to check
 */
 bool Bishop::canEat(string instruction)
 {
-	if (abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && (instruction[0] != instruction[2] && instruction[1] != instruction[3]))
+	if (abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && (instruction[0] != instruction[2] || instruction[1] != instruction[3]))
 	{
 		return true;
 	}
