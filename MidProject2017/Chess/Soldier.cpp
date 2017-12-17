@@ -12,6 +12,12 @@ Soldier::Soldier(string type, int color, Board* board) : _type(type), _color(col
 {
 }
 
+
+/*
+Input: instruction to move
+Output: string if succed or not
+function for checking if the soldier can move there
+*/
 string Soldier::moveAll(string instruction)
 {
 	string toReturn = "";
