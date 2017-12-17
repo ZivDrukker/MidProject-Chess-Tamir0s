@@ -23,7 +23,7 @@ string Rook::move(string instruction)
 
 
 	string toReturn = "";
-	if ((instruction[0] == instruction[2] || instruction[1] == instruction[3]) && notBlocked(instruction))
+	if ((instruction[LETTER_1] == instruction[LETTER_2] || instruction[NUM_1] == instruction[NUM_2]) && notBlocked(instruction))
 	{
 		toReturn = moveAll(instruction);
 	}
@@ -47,10 +47,10 @@ bool Rook::notBlocked(string instruction)
 	int staticColOrRow = 0;
 	int i = 0;
 
-	int iCol = ((int)instruction[0] - A_ASCII), iRow = SIZE - 1 - ((int)instruction[1] - ZERO_ASCII - 1);
-	int jCol = ((int)instruction[2] - A_ASCII), jRow = SIZE - 1 - ((int)instruction[3] - ZERO_ASCII - 1);
+	int iCol = ((int)instruction[LETTER_1] - A_ASCII), iRow = SIZE - 1 - ((int)instruction[NUM_1] - ZERO_ASCII - 1);
+	int jCol = ((int)instruction[LETTER_2] - A_ASCII), jRow = SIZE - 1 - ((int)instruction[NUM_2] - ZERO_ASCII - 1);
 
-	if (instruction[0] == instruction[2])
+	if (instruction[LETTER_1] == instruction[LETTER_2])
 	{
 		staticColOrRow = iCol;
 		for (i = min(iRow, jRow) + 1; i < max(iRow, jRow) && toReturn; i++)
@@ -78,7 +78,7 @@ function to check if a piece can make a certain move
 */
 bool Rook::canEat(string instruction)
 {
-	if ((instruction[0] == instruction[2] || instruction[1] == instruction[3]) && notBlocked(instruction))
+	if ((instruction[LETTER_1] == instruction[LETTER_2] || instruction[NUM_1] == instruction[NUM_2]) && notBlocked(instruction))
 	{
 		return true;
 	}

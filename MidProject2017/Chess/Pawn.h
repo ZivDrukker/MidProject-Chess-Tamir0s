@@ -3,6 +3,8 @@
 
 #include "Soldier.h"
 
+#define FIRST_MOVE_LEN 2
+
 class Pawn : public Soldier
 {
 private:

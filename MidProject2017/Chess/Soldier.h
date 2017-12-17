@@ -6,6 +6,13 @@
 #include "Board.h"
 #include <algorithm>
 
+#define LETTER_1 0
+#define NUM_1 1
+#define LETTER_2 2
+#define NUM_2 3
+#define BLACK_COLOR 1
+#define WHITE_COLOR 0
+
 using std::min;
 using std::max;
 using std::string;

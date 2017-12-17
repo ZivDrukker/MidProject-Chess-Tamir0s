@@ -4,6 +4,10 @@
 #include <thread>
 #include "Board.h"
 
+#define INIT_COLOR_INDEX 64
+#define SLEEP_TIME 1000
+#define BUFFER 1024
+#define IS_EVEN 2
 
 using namespace std;
 
@@ -27,7 +31,7 @@ void main()
 		if (ans == "0")
 		{
 			cout << "trying connect again.." << endl;
-			Sleep(5000);
+			Sleep(SLEEP_TIME);
 			isConnect = p.connect();
 		}
 		else 
@@ -38,7 +42,7 @@ void main()
 	}
 	
 
-	char msgToGraphics[1024];
+	char msgToGraphics[BUFFER];
 	// msgToGraphics should contain the board string accord the protocol
 	// YOUR CODE
 	//rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1
@@ -51,7 +55,7 @@ void main()
 
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
-	int counter = (int)msgToGraphics[64] - ZERO_ASCII;
+	int counter = (int)msgToGraphics[INIT_COLOR_INDEX] - ZERO_ASCII;
 
 	while (msgFromGraphics != "quit")
 	{
@@ -61,14 +65,14 @@ void main()
 		board->printBoard();
 
 		string toGet = "";
-		toGet += msgFromGraphics[0];
-		toGet += msgFromGraphics[1];
+		toGet += msgFromGraphics[LETTER_1];
+		toGet += msgFromGraphics[NUM_1];
 		Soldier* cell = board->getCell(toGet);
 		string strToSend = "";
 
 		if (cell != nullptr)
 		{
-			if (cell->getColor() % 2 == counter % 2)
+			if (cell->getColor() % IS_EVEN == counter % IS_EVEN)
 			{
 				strToSend = cell->move(msgFromGraphics);
 			}

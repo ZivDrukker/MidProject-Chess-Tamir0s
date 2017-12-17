@@ -22,11 +22,11 @@ string Pawn::move(string instruction)
 	string toReturn = "";
 	int color = this->getColor();
 	string toGet = "";
-	toGet += instruction[2];
-	toGet += instruction[3];
-	if(color == 0)
+	toGet += instruction[LETTER_2];
+	toGet += instruction[NUM_2];
+	if(color == WHITE_COLOR)
 	{
-		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == -1) && !_board->getCell(toGet) || ((instruction[1] - instruction[3] == -2) &&  !_alreadyMoved && !_board->getCell(toGet) && notBlocked(instruction)))) || canEat(instruction))
+		if (((instruction[LETTER_1] == instruction[LETTER_2]) && ((instruction[NUM_1] - instruction[NUM_2] == -1) && !_board->getCell(toGet) || ((instruction[NUM_1] - instruction[NUM_2] == -FIRST_MOVE_LEN) &&  !_alreadyMoved && !_board->getCell(toGet) && notBlocked(instruction)))) || canEat(instruction))
 		{
 			toReturn = moveAll(instruction);
 		}
@@ -37,7 +37,7 @@ string Pawn::move(string instruction)
 	}
 	else
 	{
-		if (((instruction[0] == instruction[2]) && ((instruction[1] - instruction[3] == 1) && !_board->getCell(toGet) || ((instruction[1] - instruction[3] == 2) && !_alreadyMoved && !_board->getCell(toGet) && notBlocked(instruction)))) || canEat(instruction))
+		if (((instruction[LETTER_1] == instruction[LETTER_2]) && ((instruction[NUM_1] - instruction[NUM_2] == 1) && !_board->getCell(toGet) || ((instruction[NUM_1] - instruction[NUM_2] == FIRST_MOVE_LEN) && !_alreadyMoved && !_board->getCell(toGet) && notBlocked(instruction)))) || canEat(instruction))
 		{
 			toReturn = moveAll(instruction);
 		}
@@ -60,9 +60,9 @@ bool Pawn::notBlocked(string instruction)
 {
 	//no need to check if first move, becuase sent to func only from first move condition
 	string toGet = "";
-	toGet += instruction[0];
+	toGet += instruction[LETTER_1];
 
-	if (this->getColor() == 1)
+	if (this->getColor() == BLACK_COLOR)
 	{
 		toGet += "6";
 
@@ -82,18 +82,18 @@ function to check if a pawn can eat in a given spot
 bool Pawn::canEat(string instruction)
 {
 	string newInstruction = "";
-	newInstruction += instruction[2];
-	newInstruction += instruction[3];
+	newInstruction += instruction[LETTER_2];
+	newInstruction += instruction[NUM_2];
 
 	if ((*this->_board).getCell(newInstruction))
 	{
-		if (abs(instruction[0] - instruction[2]) == 1)
+		if (abs(instruction[LETTER_1] - instruction[LETTER_2]) == 1)
 		{
-			if (instruction[1] - instruction[3] == 1 && this->getColor() == 1)
+			if (instruction[NUM_1] - instruction[NUM_2] == 1 && this->getColor() == BLACK_COLOR)
 			{
 				return true;
 			}
-			else if (instruction[1] - instruction[3] == -1 && this->getColor() == 0)
+			else if (instruction[NUM_1] - instruction[NUM_2] == -1 && this->getColor() == WHITE_COLOR)
 			{
 				return true;
 			}

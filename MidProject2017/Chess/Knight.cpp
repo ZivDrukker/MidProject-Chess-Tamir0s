@@ -20,7 +20,7 @@ function for moving the piece
 string Knight::move(string instruction)
 {
 	string toReturn = "";
-	if (abs(instruction[0] - instruction[2]) == 2 && abs(instruction[3] - instruction[1]) == 1 || abs(instruction[0] - instruction[2]) == 1 && abs(instruction[3] - instruction[1]) == 2)
+	if (abs(instruction[LETTER_1] - instruction[LETTER_2]) == 2 && abs(instruction[NUM_2] - instruction[NUM_1]) == 1 || abs(instruction[LETTER_1] - instruction[LETTER_2]) == 1 && abs(instruction[NUM_2] - instruction[NUM_1]) == 2)
 	{
 		toReturn = moveAll(instruction);
 	}
@@ -51,7 +51,7 @@ function to check
 */
 bool Knight::canEat(string instruction)
 {
-	if (abs(instruction[0] - instruction[2]) == 2 && abs(instruction[3] - instruction[1]) == 1 || abs(instruction[0] - instruction[2]) == 1 && abs(instruction[3] - instruction[1]) == 2)
+	if (abs(instruction[LETTER_1] - instruction[LETTER_2]) == 2 && abs(instruction[NUM_2] - instruction[NUM_1]) == 1 || abs(instruction[LETTER_1] - instruction[LETTER_2]) == 1 && abs(instruction[NUM_2] - instruction[NUM_1]) == 2)
 	{
 		return true;
 	}

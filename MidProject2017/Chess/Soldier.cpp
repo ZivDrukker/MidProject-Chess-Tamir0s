@@ -24,14 +24,14 @@ string Soldier::moveAll(string instruction)
 	if (!this->currPlayer(instruction))
 	{
 		string toSet = "";
-		toSet += instruction[2];
-		toSet += instruction[3];
+		toSet += instruction[LETTER_2];
+		toSet += instruction[NUM_2];
 
 		Soldier* tempCell = _board->setCell(this, toSet);
 
 		toSet = "";
-		toSet += instruction[0];
-		toSet += instruction[1];
+		toSet += instruction[LETTER_1];
+		toSet += instruction[NUM_1];
 		_board->setCell(nullptr, toSet);
 
 		if (!checkSelfChess())
@@ -46,13 +46,13 @@ string Soldier::moveAll(string instruction)
 		else
 		{
 			string toSet = "";
-			toSet += instruction[2];
-			toSet += instruction[3];
+			toSet += instruction[LETTER_2];
+			toSet += instruction[NUM_2];
 			_board->setCell(tempCell, toSet);
 
 			toSet = "";
-			toSet += instruction[0];
-			toSet += instruction[1];
+			toSet += instruction[LETTER_1];
+			toSet += instruction[NUM_1];
 			_board->setCell(this, toSet);
 
 			toReturn = "4";
@@ -95,12 +95,12 @@ function to check if both cells are populated by the same player
 bool Soldier::currPlayer(string instruction)
 {
 	string toGet1 = "";
-	toGet1 += instruction[0];
-	toGet1 += instruction[1];
+	toGet1 += instruction[LETTER_1];
+	toGet1 += instruction[NUM_1];
 
 	string toGet2 = "";
-	toGet2 += instruction[2];
-	toGet2 += instruction[3];
+	toGet2 += instruction[LETTER_2];
+	toGet2 += instruction[NUM_2];
 
 	if (_board->getCell(toGet2))
 	{
