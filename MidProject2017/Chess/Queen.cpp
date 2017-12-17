@@ -20,7 +20,7 @@ function for moving the piece
 string Queen::move(string instruction)
 {
 	string toReturn = "";
-	if ((abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1])) || (instruction[0] == instruction[2] || instruction[1] == instruction[3]))
+	if (((abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1])) || (instruction[0] == instruction[2] || instruction[1] == instruction[3])) && notBlocked(instruction))
 	{
 		toReturn = moveAll(instruction);
 	}
@@ -48,30 +48,71 @@ bool Queen::notBlocked(string instruction)
 	int jCol = ((int)instruction[2] - A_ASCII), jRow = SIZE - 1 - ((int)instruction[3] - ZERO_ASCII - 1);
 
 	//rook like check
-	if (instruction[0] == instruction[2])
+	if (instruction[0] == instruction[2] || instruction[1] == instruction[3])
 	{
-		staticColOrRow = iCol;
-		for (i = min(iRow, jRow) + 1; i < max(iRow, jRow) && toReturn; i++)
+		if (instruction[0] == instruction[2])
 		{
-			(*this->_board)(i, staticColOrRow) != nullptr ? toReturn = false : toReturn = true;
+			staticColOrRow = iCol;
+
+			string toGet2 = "";
+			toGet2 += instruction[2];
+			toGet2 += instruction[3];
+
+			for (i = min(iRow, jRow); i < max(iRow, jRow) && toReturn; i++)
+			{
+				(*this->_board)(i, staticColOrRow) != nullptr && this != (*this->_board)(i, staticColOrRow) && (*this->_board)(i, staticColOrRow) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
+			}
+		}
+		else
+		{
+			staticColOrRow = iRow;
+			
+			string toGet2 = "";
+			toGet2 += instruction[2];
+			toGet2 += instruction[3];
+
+			for (i = min(iCol, jCol); i < max(iCol, jCol) && toReturn; i++)
+			{
+				(*this->_board)(staticColOrRow, i) != nullptr && this != (*this->_board)(staticColOrRow, i) && (*this->_board)(i, staticColOrRow) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
+			}
 		}
 	}
 	else
 	{
-		staticColOrRow = iRow;
-		for (i = min(iCol, jCol) + 1; i < max(iCol, jCol) && toReturn; i++)
+		//bishop like check
+		i = min(instruction[0], instruction[2]);
+		j = 0;
+		i == instruction[0] ? j = instruction[1] : j = instruction[3];
+		if (j != min(instruction[1], instruction[3]))
 		{
-			(*this->_board)(staticColOrRow, i) != nullptr ? toReturn = false : toReturn = true;
-		}
-	}
+			for (i = i; i < max(instruction[0], instruction[2]) && toReturn; i++, j--)
+			{
+				string toGet = "";
+				toGet += i;
+				toGet += j;
 
-	//bishop like check
-	for (int i = min(instruction[0], instruction[2]), j = min(instruction[1], instruction[3]); i < max(instruction[0], instruction[2]) && toReturn; i++, j++)
-	{
-		string toGet = "";
-		toGet += i;
-		toGet += j;
-		_board->getCell(toGet) != nullptr ? toReturn = false : toReturn = true;
+				string toGet2 = "";
+				toGet2 += instruction[2];
+				toGet2 += instruction[3];
+
+				(_board->getCell(toGet) != nullptr && this != _board->getCell(toGet) && _board->getCell(toGet) != _board->getCell(toGet2)) ? toReturn = false : toReturn = true;
+			}
+		}
+		else
+		{
+			for (i = i; i < max(instruction[0], instruction[2]) && toReturn; i++, j++)
+			{
+				string toGet = "";
+				toGet += i;
+				toGet += j;
+
+				string toGet2 = "";
+				toGet2 += instruction[2];
+				toGet2 += instruction[3];
+
+				(_board->getCell(toGet) != nullptr && this != _board->getCell(toGet) && _board->getCell(toGet) != _board->getCell(toGet2)) ? toReturn = false : toReturn = true;
+			}
+		}
 	}
 
 	return toReturn;

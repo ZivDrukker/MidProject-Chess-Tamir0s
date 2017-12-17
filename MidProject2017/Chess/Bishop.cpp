@@ -21,7 +21,7 @@ string Bishop::move(string instruction)
 {
 	string toReturn = "";
 
-	if ((abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && (instruction[0] != instruction[2] || instruction[1] != instruction[3])) && notBlocked(instruction))
+	if (abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && notBlocked(instruction))
 	{
 		toReturn = moveAll(instruction);
 	}
@@ -41,14 +41,42 @@ function to check if a piece's movement os blocked by a diffrent player
 */
 bool Bishop::notBlocked(string instruction)
 {
-	for (int i = min(instruction[0], instruction[2]), j = min(instruction[1], instruction[3]); i < max(instruction[0], instruction[2]); i++, j++)
+	int i = min(instruction[0], instruction[2]);
+	int j = 0;
+	i == instruction[0] ? j = instruction[1] : j = instruction[3];
+	if (j != min(instruction[1], instruction[3]))
 	{
-		string toGet = "";
-		toGet += i;
-		toGet += j;
-		if (_board->getCell(toGet) != nullptr && this != _board->getCell(toGet))
+		for (i = i; i < max(instruction[0], instruction[2]); i++, j--)
 		{
-			return false;
+			string toGet = "";
+			toGet += i;
+			toGet += j;
+
+			string toGet2 = "";
+			toGet2 += instruction[2];
+			toGet2 += instruction[3];
+			if (_board->getCell(toGet) != nullptr && this != _board->getCell(toGet) && _board->getCell(toGet) != _board->getCell(toGet2))
+			{
+				return false;
+			}
+		}
+	}
+	else
+	{
+		for (i = i; i < max(instruction[0], instruction[2]); i++, j++)
+		{
+			string toGet = "";
+			toGet += i;
+			toGet += j;
+
+			string toGet2 = "";
+			toGet2 += instruction[2];
+			toGet2 += instruction[3];
+
+			if (_board->getCell(toGet) != nullptr && this != _board->getCell(toGet) && _board->getCell(toGet) != _board->getCell(toGet2))
+			{
+				return false;
+			}
 		}
 	}
 
@@ -63,7 +91,7 @@ function to check
 */
 bool Bishop::canEat(string instruction)
 {
-	if (abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && (instruction[0] != instruction[2] || instruction[1] != instruction[3]))
+	if (abs(instruction[0] - instruction[2]) == abs(instruction[3] - instruction[1]) && notBlocked(instruction))
 	{
 		return true;
 	}

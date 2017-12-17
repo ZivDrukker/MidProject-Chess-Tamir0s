@@ -144,7 +144,11 @@ bool Soldier::checkSelfChess()
 					string toEat = _board->getXandY((*this->_board)(i, j));
 					toEat +=_board->getXandY(king);
 
-					if ((*this->_board)(i, j)->canEat(toEat))
+					string toEat2 = _board->getXandY(king);
+					toEat2 += _board->getXandY((*this->_board)(i, j));
+					
+
+					if ((*this->_board)(i, j)->canEat(toEat) && king->canEat(toEat2))
 					{
 						return true;
 					}
