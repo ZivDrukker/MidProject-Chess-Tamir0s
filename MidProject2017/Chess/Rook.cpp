@@ -73,7 +73,7 @@ bool Rook::notBlocked(string instruction)
 			toGet2 += instruction[LETTER_2];
 			toGet2 += instruction[NUM_2];
 
-			(*this->_board)(staticColOrRow, i) != nullptr && this != (*this->_board)(staticColOrRow, i) && (*this->_board)(i, staticColOrRow) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
+			(*this->_board)(staticColOrRow, i) != nullptr && this != (*this->_board)(staticColOrRow, i) && (*this->_board)(staticColOrRow, i) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
 		}
 	}
 

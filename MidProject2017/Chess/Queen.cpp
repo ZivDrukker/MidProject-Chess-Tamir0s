@@ -75,7 +75,7 @@ bool Queen::notBlocked(string instruction)
 
 			for (i = min(iCol, jCol); i <= max(iCol, jCol) && toReturn; i++)
 			{
-				(*this->_board)(staticColOrRow, i) != nullptr && this != (*this->_board)(staticColOrRow, i) && (*this->_board)(i, staticColOrRow) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
+				(*this->_board)(staticColOrRow, i) != nullptr && this != (*this->_board)(staticColOrRow, i) && (*this->_board)(staticColOrRow, i) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
 			}
 		}
 	}

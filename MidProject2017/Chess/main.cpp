@@ -41,9 +41,9 @@ void main()
 	
 
 	char msgToGraphics[BUFFER];
-	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
+	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR0");
 	
-	Board* board = new Board("rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
+	Board* board = new Board("rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR0");
 
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
