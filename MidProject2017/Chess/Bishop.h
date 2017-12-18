@@ -1,7 +1,9 @@
 //Tam!r0s & Z!v0s @ Chess-MidProject
+
 #pragma once
 
 #include "Soldier.h"
+
 
 class Bishop : public Soldier
 {

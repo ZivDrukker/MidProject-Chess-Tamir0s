@@ -1,3 +1,5 @@
+//Tam!r0s & Z!v0s @ Chess-MidProject
+
 /****************************** Module Header ******************************\
 * Module Name:	CppNamedPipeClient.cpp
 * Project:		CppNamedPipeClient

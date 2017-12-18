@@ -1,9 +1,11 @@
 //Tam!r0s & Z!v0s @ Chess-MidProject
+
 #pragma once
 
 #include "Soldier.h"
 
 #define FIRST_MOVE_LEN 2
+
 
 class Pawn : public Soldier
 {

@@ -12,6 +12,7 @@ Rook::Rook(int color, Board* board) : Soldier("Rook", color, board)
 {
 }
 
+
 /*
 Input: instruction to move the piece
 Output: NONE
@@ -19,10 +20,10 @@ function for moving the piece
 */
 string Rook::move(string instruction)
 {
-	_board->printBoard();
-
+	_board->printBoard();//log printing
 
 	string toReturn = "";
+
 	if ((instruction[LETTER_1] == instruction[LETTER_2] || instruction[NUM_1] == instruction[NUM_2]) && notBlocked(instruction))
 	{
 		toReturn = moveAll(instruction);
@@ -53,6 +54,7 @@ bool Rook::notBlocked(string instruction)
 	if (instruction[LETTER_1] == instruction[LETTER_2])
 	{
 		staticColOrRow = iCol;
+
 		for (i = min(iRow, jRow); i <= max(iRow, jRow) && toReturn; i++)
 		{
 			string toGet2 = "";

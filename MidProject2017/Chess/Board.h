@@ -1,4 +1,5 @@
 //Tam!r0s & Z!v0s @ Chess-MidProject
+
 #pragma once
 
 #include <string>
@@ -26,11 +27,8 @@
 
 using std::string;
 using std::cout;
-using std::cin;
 
 class Soldier;
-//class Rook;
-//class King;
 
 class Board
 {
@@ -46,5 +44,5 @@ public:
 	Soldier* setCell(Soldier* piece, string cell);
 	Soldier* operator()(int x, int y);
 	string getXandY(Soldier* piece);
-	void printBoard();//debugging function
+	void printBoard();//for log
 };

@@ -21,6 +21,7 @@ function for checking if the soldier can move there
 string Soldier::moveAll(string instruction)
 {
 	string toReturn = "";
+
 	if (!this->currPlayer(instruction))
 	{
 		string toSet = "";
@@ -62,8 +63,10 @@ string Soldier::moveAll(string instruction)
 	{
 		toReturn = "3";
 	}
+
 	return toReturn;
 }
+
 
 /*
 Input: NONE
@@ -119,6 +122,7 @@ the function is checking if there is chess on yourself by moving the piece
 bool Soldier::checkSelfChess()
 {
 	Soldier* king = nullptr;
+
 	for (int i = 0; i < SIZE; i++)
 	{
 		for (int j = 0; j < SIZE; j++)
@@ -152,6 +156,7 @@ bool Soldier::checkSelfChess()
 			}
 		}
 	}
+
 	return nullptr;
 }
 
@@ -164,6 +169,7 @@ the function is checking if there is chess on the enemy by moving the piece
 bool Soldier::checkEnemyChess()
 {
 	Soldier* king = nullptr;
+
 	for (int i = 0; i < SIZE; i++)
 	{
 		for (int j = 0; j < SIZE; j++)
@@ -197,5 +203,6 @@ bool Soldier::checkEnemyChess()
 			}
 		}
 	}
+
 	return false;
 }

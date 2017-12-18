@@ -1,4 +1,5 @@
 //Tam!r0s & Z!v0s @ Chess-MidProject
+
 #include "Pipe.h"
 #include <iostream>
 #include <thread>
@@ -14,7 +15,6 @@ using namespace std;
 void main()
 {
 	srand(time_t(NULL));
-
 	
 	Pipe p;
 	bool isConnect = p.connect();
@@ -41,11 +41,7 @@ void main()
 	
 
 	char msgToGraphics[BUFFER];
-	// msgToGraphics should contain the board string accord the protocol
-	// YOUR CODE
-	//rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1
-	//rkrkrkrkrkrkrkrk################################RKRKRKRKRKRKRKRK1
-	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
+	strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
 	
 	Board* board = new Board("rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1");
 
@@ -55,11 +51,9 @@ void main()
 	string msgFromGraphics = p.getMessageFromGraphics();
 	int counter = (int)msgToGraphics[INIT_COLOR_INDEX] - ZERO_ASCII;
 	counter >= 1 ? counter = BLACK_COLOR : counter = WHITE_COLOR;
+
 	while (msgFromGraphics != "quit")
 	{
-		// should handle the string the sent from graphics
-		// according the protocol. Ex: e2e4           (move e2 to e4)
-		// YOUR CODE
 		board->printBoard();
 
 		string toGet = "";

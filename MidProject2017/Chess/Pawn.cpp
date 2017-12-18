@@ -12,6 +12,7 @@ Pawn::Pawn(int color, Board* board) : Soldier("Pawn", color, board), _alreadyMov
 {
 }
 
+
 /*
 Input: instruction to move the piece
 Output: NONE
@@ -24,6 +25,7 @@ string Pawn::move(string instruction)
 	string toGet = "";
 	toGet += instruction[LETTER_2];
 	toGet += instruction[NUM_2];
+
 	if(color == WHITE_COLOR)
 	{
 		if (((instruction[LETTER_1] == instruction[LETTER_2]) && ((instruction[NUM_1] - instruction[NUM_2] == -1) && !_board->getCell(toGet) || ((instruction[NUM_1] - instruction[NUM_2] == -FIRST_MOVE_LEN) &&  !_alreadyMoved && !_board->getCell(toGet) && notBlocked(instruction)))) || canEat(instruction))

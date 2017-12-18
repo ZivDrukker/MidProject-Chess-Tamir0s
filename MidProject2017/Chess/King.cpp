@@ -12,6 +12,7 @@ King::King(int color, Board* board) : Soldier("King", color, board)
 {
 }
 
+
 /*
 Input: instruction to move the piece
 Output: NONE
@@ -20,6 +21,7 @@ function for moving the piece
 string King::move(string instruction)
 {
 	string toReturn = "";
+
 	if (abs(instruction[LETTER_1] - instruction[LETTER_2]) == 1 || abs(instruction[NUM_2] - instruction[NUM_1]) == 1)
 	{
 		toReturn = moveAll(instruction);

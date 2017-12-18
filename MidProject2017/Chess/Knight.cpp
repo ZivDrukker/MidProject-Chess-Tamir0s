@@ -12,6 +12,7 @@ Knight::Knight(int color, Board* board) : Soldier("Knight", color, board)
 {
 }
 
+
 /*
 Input: instruction to move the piece
 Output: NONE
@@ -20,6 +21,7 @@ function for moving the piece
 string Knight::move(string instruction)
 {
 	string toReturn = "";
+
 	if (abs(instruction[LETTER_1] - instruction[LETTER_2]) == 2 && abs(instruction[NUM_2] - instruction[NUM_1]) == 1 || abs(instruction[LETTER_1] - instruction[LETTER_2]) == 1 && abs(instruction[NUM_2] - instruction[NUM_1]) == 2)
 	{
 		toReturn = moveAll(instruction);

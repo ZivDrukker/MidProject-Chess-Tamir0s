@@ -1,4 +1,5 @@
 //Tam!r0s & Z!v0s @ Chess-MidProject
+
 #pragma once
 
 #include <string>
@@ -10,6 +11,7 @@
 #define NUM_1 1
 #define LETTER_2 2
 #define NUM_2 3
+
 #define BLACK_COLOR 1
 #define WHITE_COLOR 0
 
@@ -17,9 +19,9 @@ using std::min;
 using std::max;
 using std::string;
 using std::cout;
-using std::cin;
 
 class Board;
+
 
 class Soldier
 {

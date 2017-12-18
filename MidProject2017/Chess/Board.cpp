@@ -1,14 +1,13 @@
 //Tam!r0s & Z!v0s @ Chess-MidProject
 
+//includes has to be in .cpp file to prevent an ERROR
 #include "Board.h"
-#include "King.h" //need for fixing the errors
+#include "King.h"
 #include "Rook.h"
 #include "Knight.h"
 #include "Queen.h"
 #include "Bishop.h"
 #include "Pawn.h"
-
-
 
 
 /*
@@ -65,7 +64,9 @@ Soldier* Board::setCell(Soldier* piece, string cell)
 {
 	int col = ((int)cell[LETTER_1] - A_ASCII), row = SIZE - 1 - ((int)cell[NUM_1] - ZERO_ASCII - 1);
 	Soldier* temp = _gameBoard[row][col];
+
 	_gameBoard[row][col] = piece;
+
 	return temp;
 }
 
@@ -147,6 +148,7 @@ void Board::setBoard(string str)
 			case EMPTY_PIECE:
 				_gameBoard[i][j] = nullptr;
 				break;
+
 			default:
 				break;
 			}
@@ -164,6 +166,7 @@ string Board::getXandY(Soldier* piece)
 {
 	bool found = false;
 	string place = "";
+
 	for (int i = 0; i < SIZE && !found; i++)
 	{
 		for (int j = 0; j < SIZE && !found; j++)
@@ -176,6 +179,7 @@ string Board::getXandY(Soldier* piece)
 			}
 		}
 	}
+
 	return place;
 }
 

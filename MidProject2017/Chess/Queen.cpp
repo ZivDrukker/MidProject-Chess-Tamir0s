@@ -12,6 +12,7 @@ Queen::Queen(int color, Board* board) : Soldier("Queen", color, board)
 {
 }
 
+
 /*
 Input: instruction to move the piece
 Output: NONE
@@ -20,6 +21,7 @@ function for moving the piece
 string Queen::move(string instruction)
 {
 	string toReturn = "";
+
 	if (((abs(instruction[LETTER_1] - instruction[LETTER_2]) == abs(instruction[NUM_2] - instruction[NUM_1])) || (instruction[LETTER_1] == instruction[LETTER_2] || instruction[NUM_1] == instruction[NUM_2])) && notBlocked(instruction))
 	{
 		toReturn = moveAll(instruction);
@@ -82,7 +84,9 @@ bool Queen::notBlocked(string instruction)
 		//bishop like check
 		i = min(instruction[LETTER_1], instruction[LETTER_2]);
 		j = 0;
+
 		i == instruction[LETTER_1] ? j = instruction[NUM_1] : j = instruction[NUM_2];
+
 		if (j != min(instruction[NUM_1], instruction[NUM_2]))
 		{
 			for (i = i; i <= max(instruction[LETTER_1], instruction[LETTER_2]) && toReturn; i++, j--)

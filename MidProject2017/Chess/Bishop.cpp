@@ -12,6 +12,7 @@ Bishop::Bishop(int color, Board* board) : Soldier("Bishop", color, board)
 {
 }
 
+
 /*
 Input: instruction to move the piece
 Output: NONE
@@ -43,7 +44,9 @@ bool Bishop::notBlocked(string instruction)
 {
 	int i = min(instruction[LETTER_1], instruction[LETTER_2]);
 	int j = 0;
+
 	i == instruction[LETTER_1] ? j = instruction[NUM_1] : j = instruction[NUM_2];
+
 	if (j != min(instruction[NUM_1], instruction[NUM_2]))
 	{
 		for (i = i; i <= max(instruction[LETTER_1], instruction[LETTER_2]); i++, j--)

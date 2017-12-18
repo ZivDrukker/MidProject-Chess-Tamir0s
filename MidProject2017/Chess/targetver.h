@@ -1,3 +1,5 @@
+//Tam!r0s & Z!v0s @ Chess-MidProject
+
 #pragma once
 
 // The following macros define the minimum required platform.  The minimum required platform
