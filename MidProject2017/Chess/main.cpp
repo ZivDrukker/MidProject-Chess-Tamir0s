@@ -13,8 +13,6 @@ using namespace std;
 
 void main()
 {
-	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-
 	srand(time_t(NULL));
 
 	
@@ -56,7 +54,7 @@ void main()
 	// get message from graphics
 	string msgFromGraphics = p.getMessageFromGraphics();
 	int counter = (int)msgToGraphics[INIT_COLOR_INDEX] - ZERO_ASCII;
-
+	counter >= 1 ? counter = BLACK_COLOR : counter = WHITE_COLOR;
 	while (msgFromGraphics != "quit")
 	{
 		// should handle the string the sent from graphics

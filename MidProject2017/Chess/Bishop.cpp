@@ -46,7 +46,7 @@ bool Bishop::notBlocked(string instruction)
 	i == instruction[LETTER_1] ? j = instruction[NUM_1] : j = instruction[NUM_2];
 	if (j != min(instruction[NUM_1], instruction[NUM_2]))
 	{
-		for (i = i; i < max(instruction[LETTER_1], instruction[LETTER_2]); i++, j--)
+		for (i = i; i <= max(instruction[LETTER_1], instruction[LETTER_2]); i++, j--)
 		{
 			string toGet = "";
 			toGet += i;
@@ -55,6 +55,7 @@ bool Bishop::notBlocked(string instruction)
 			string toGet2 = "";
 			toGet2 += instruction[LETTER_2];
 			toGet2 += instruction[NUM_2];
+
 			if (_board->getCell(toGet) != nullptr && this != _board->getCell(toGet) && _board->getCell(toGet) != _board->getCell(toGet2))
 			{
 				return false;
@@ -63,7 +64,7 @@ bool Bishop::notBlocked(string instruction)
 	}
 	else
 	{
-		for (i = i; i < max(instruction[LETTER_1], instruction[LETTER_2]); i++, j++)
+		for (i = i; i <= max(instruction[LETTER_1], instruction[LETTER_2]); i++, j++)
 		{
 			string toGet = "";
 			toGet += i;

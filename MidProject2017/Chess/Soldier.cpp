@@ -139,24 +139,20 @@ bool Soldier::checkSelfChess()
 		{
 			if ((*this->_board)(i, j))
 			{
-				if ((*this->_board)(i, j)->getColor() != this->getColor())
+				if ((*this->_board)(i, j)->getColor() != king->getColor())
 				{
 					string toEat = _board->getXandY((*this->_board)(i, j));
 					toEat +=_board->getXandY(king);
 
-					string toEat2 = _board->getXandY(king);
-					toEat2 += _board->getXandY((*this->_board)(i, j));
-					
-
-					if ((*this->_board)(i, j)->canEat(toEat) && king->canEat(toEat2))
+					if ((*this->_board)(i, j)->canEat(toEat))
 					{
-						return true;
+						return (*this->_board)(i, j);
 					}
 				}
 			}
 		}
 	}
-	return false;
+	return nullptr;
 }
 
 
@@ -188,7 +184,7 @@ bool Soldier::checkEnemyChess()
 		{
 			if ((*this->_board)(i, j))
 			{
-				if ((*this->_board)(i, j)->getColor() == this->getColor())
+				if ((*this->_board)(i, j)->getColor() != king->getColor())
 				{
 					string toEat = _board->getXandY((*this->_board)(i, j));
 					toEat += _board->getXandY(king);

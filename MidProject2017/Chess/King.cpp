@@ -51,7 +51,7 @@ function to check
 */
 bool King::canEat(string instruction)
 {
-	if (abs(instruction[LETTER_1] - instruction[LETTER_2]) == 1 || abs(instruction[NUM_2] - instruction[NUM_1]) == 1)
+	if (abs(instruction[LETTER_1] - instruction[LETTER_2]) + abs(instruction[NUM_2] - instruction[NUM_1]) <= 2 && (abs(instruction[LETTER_1] - instruction[LETTER_2]) == 1 || abs(instruction[NUM_2] - instruction[NUM_1]) == 1))
 	{
 		return true;
 	}

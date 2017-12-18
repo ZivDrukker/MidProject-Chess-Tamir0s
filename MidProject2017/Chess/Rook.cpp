@@ -53,17 +53,25 @@ bool Rook::notBlocked(string instruction)
 	if (instruction[LETTER_1] == instruction[LETTER_2])
 	{
 		staticColOrRow = iCol;
-		for (i = min(iRow, jRow) + 1; i < max(iRow, jRow) && toReturn; i++)
+		for (i = min(iRow, jRow); i <= max(iRow, jRow) && toReturn; i++)
 		{
-			(*this->_board)(i, staticColOrRow) != nullptr ? toReturn = false : toReturn = true;
+			string toGet2 = "";
+			toGet2 += instruction[LETTER_2];
+			toGet2 += instruction[NUM_2];
+
+			(*this->_board)(i, staticColOrRow) != nullptr && this != (*this->_board)(i, staticColOrRow) && (*this->_board)(i, staticColOrRow) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
 		}
 	}
 	else
 	{
 		staticColOrRow = iRow;
-		for (i = min(iCol, jCol) + 1; i < max(iCol, jCol) && toReturn; i++)
+		for (i = min(iCol, jCol); i <= max(iCol, jCol) && toReturn; i++)
 		{
-			(*this->_board)(staticColOrRow, i) != nullptr ? toReturn = false : toReturn = true;
+			string toGet2 = "";
+			toGet2 += instruction[LETTER_2];
+			toGet2 += instruction[NUM_2];
+
+			(*this->_board)(staticColOrRow, i) != nullptr && this != (*this->_board)(staticColOrRow, i) && (*this->_board)(i, staticColOrRow) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
 		}
 	}
 

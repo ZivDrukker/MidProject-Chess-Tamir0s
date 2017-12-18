@@ -58,7 +58,7 @@ bool Queen::notBlocked(string instruction)
 			toGet2 += instruction[LETTER_2];
 			toGet2 += instruction[NUM_2];
 
-			for (i = min(iRow, jRow); i < max(iRow, jRow) && toReturn; i++)
+			for (i = min(iRow, jRow); i <= max(iRow, jRow) && toReturn; i++)
 			{
 				(*this->_board)(i, staticColOrRow) != nullptr && this != (*this->_board)(i, staticColOrRow) && (*this->_board)(i, staticColOrRow) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
 			}
@@ -71,7 +71,7 @@ bool Queen::notBlocked(string instruction)
 			toGet2 += instruction[LETTER_2];
 			toGet2 += instruction[NUM_2];
 
-			for (i = min(iCol, jCol); i < max(iCol, jCol) && toReturn; i++)
+			for (i = min(iCol, jCol); i <= max(iCol, jCol) && toReturn; i++)
 			{
 				(*this->_board)(staticColOrRow, i) != nullptr && this != (*this->_board)(staticColOrRow, i) && (*this->_board)(i, staticColOrRow) != _board->getCell(toGet2) ? toReturn = false : toReturn = true;
 			}
@@ -85,7 +85,7 @@ bool Queen::notBlocked(string instruction)
 		i == instruction[LETTER_1] ? j = instruction[NUM_1] : j = instruction[NUM_2];
 		if (j != min(instruction[NUM_1], instruction[NUM_2]))
 		{
-			for (i = i; i < max(instruction[LETTER_1], instruction[LETTER_2]) && toReturn; i++, j--)
+			for (i = i; i <= max(instruction[LETTER_1], instruction[LETTER_2]) && toReturn; i++, j--)
 			{
 				string toGet = "";
 				toGet += i;
@@ -100,7 +100,7 @@ bool Queen::notBlocked(string instruction)
 		}
 		else
 		{
-			for (i = i; i < max(instruction[LETTER_1], instruction[LETTER_2]) && toReturn; i++, j++)
+			for (i = i; i <= max(instruction[LETTER_1], instruction[LETTER_2]) && toReturn; i++, j++)
 			{
 				string toGet = "";
 				toGet += i;

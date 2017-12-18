@@ -50,7 +50,7 @@ function to get the soldier in a specific place by a given string
 */
 Soldier* Board::getCell(string cell)
 {
-	int col = ((int)cell[0] - A_ASCII), row = SIZE - 1 - ((int)cell[1] - ZERO_ASCII - 1);
+	int col = ((int)cell[LETTER_1] - A_ASCII), row = SIZE - 1 - ((int)cell[NUM_1] - ZERO_ASCII - 1);
 
 	return _gameBoard[row][col];
 }
@@ -63,7 +63,7 @@ function to set a soldier to a cell
 */
 Soldier* Board::setCell(Soldier* piece, string cell)
 {
-	int col = ((int)cell[0] - A_ASCII), row = SIZE - 1 - ((int)cell[1] - ZERO_ASCII - 1);
+	int col = ((int)cell[LETTER_1] - A_ASCII), row = SIZE - 1 - ((int)cell[NUM_1] - ZERO_ASCII - 1);
 	Soldier* temp = _gameBoard[row][col];
 	_gameBoard[row][col] = piece;
 	return temp;
@@ -97,51 +97,51 @@ void Board::setBoard(string str)
 			switch (str[(i * SIZE) + j])
 			{
 			case KING_BLACK:
-				_gameBoard[i][j] = new King(1, this);
+				_gameBoard[i][j] = new King(BLACK_COLOR, this);
 				break;
 
 			case KING_WHITE:
-				_gameBoard[i][j] = new King(0, this);
+				_gameBoard[i][j] = new King(WHITE_COLOR, this);
 				break;
 
 			case ROOK_BLACK:
-				_gameBoard[i][j] = new Rook(1, this);
+				_gameBoard[i][j] = new Rook(BLACK_COLOR, this);
 				break;
 
 			case ROOK_WHITE:
-				_gameBoard[i][j] = new Rook(0, this);
+				_gameBoard[i][j] = new Rook(WHITE_COLOR, this);
 				break;
 
 			case KNIGHT_BLACK:
-				_gameBoard[i][j] = new Knight(1, this);
+				_gameBoard[i][j] = new Knight(BLACK_COLOR, this);
 				break;
 
 			case KNIGHT_WHITE:
-				_gameBoard[i][j] = new Knight(0, this);
+				_gameBoard[i][j] = new Knight(WHITE_COLOR, this);
 				break;
 			
 			case QUEEN_BLACK:
-				_gameBoard[i][j] = new Queen(1, this);
+				_gameBoard[i][j] = new Queen(BLACK_COLOR, this);
 				break;
 			
 			case QUEEN_WHITE:
-				_gameBoard[i][j] = new Queen(0, this);
+				_gameBoard[i][j] = new Queen(WHITE_COLOR, this);
 				break;
 
 			case BISHOP_BLACK:
-				_gameBoard[i][j] = new Bishop(1, this);
+				_gameBoard[i][j] = new Bishop(BLACK_COLOR, this);
 				break;
 
 			case BISHOP_WHITE:
-				_gameBoard[i][j] = new Bishop(0, this);
+				_gameBoard[i][j] = new Bishop(WHITE_COLOR, this);
 				break;
 
 			case PAWN_BLACK:
-				_gameBoard[i][j] = new Pawn(1, this);
+				_gameBoard[i][j] = new Pawn(BLACK_COLOR, this);
 				break;
 
 			case PAWN_WHITE:
-				_gameBoard[i][j] = new Pawn(0, this);
+				_gameBoard[i][j] = new Pawn(WHITE_COLOR, this);
 				break;
 
 			case EMPTY_PIECE:
@@ -170,8 +170,8 @@ string Board::getXandY(Soldier* piece)
 		{
 			if (piece == _gameBoard[i][j])
 			{
-				place += (i + A_ASCII);
-				place += (j + ZERO_ASCII);
+				place += (j + A_ASCII);
+				place += ((SIZE - i) + ZERO_ASCII);
 				found = true;
 			}
 		}
